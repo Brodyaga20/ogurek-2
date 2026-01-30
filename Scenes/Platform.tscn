@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3re1emrqmxxy"]
+
+[ext_resource type="Texture2D" uid="uid://4vhst8lxro3d" path="res://Resources/Textures/Environment/EmptyBlock.png" id="1_esyhg"]
+[ext_resource type="Script" uid="uid://8kvs224m4chd" path="res://Scripts/Platform.gd" id="1_fxn6g"]
+
+[node name="Cliff1" type="StaticBody2D"]
+script = ExtResource("1_fxn6g")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_esyhg")
