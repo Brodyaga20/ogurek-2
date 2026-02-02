@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cblrn66e400w4"]
+[gd_scene load_steps=35 format=3 uid="uid://cblrn66e400w4"]
 
 [ext_resource type="Script" uid="uid://cpbjblsfvd2h8" path="res://Scripts/Crest.gd" id="1_rheof"]
 [ext_resource type="Texture2D" uid="uid://d1jqonk3kigm1" path="res://Resources/Textures/Particles/Wind/Wind1.png" id="2_60bo7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bhonsuhjpjlhi" path="res://Resources/Textures/Environment/Crest/Platforms/BackGround/2.png" id="5_f7pya"]
 [ext_resource type="Texture2D" uid="uid://bud83aitspqmv" path="res://Resources/Textures/Environment/Crest/Platforms/BackGround/1.png" id="6_fhwdh"]
 [ext_resource type="Texture2D" uid="uid://uq5vdcumfjya" path="res://Resources/Textures/Environment/Crest/Platforms/BackGround/3.png" id="7_2covj"]
+[ext_resource type="Texture2D" uid="uid://ccccbiq7xvkfo" path="res://Resources/Textures/Environment/Crest/Platforms/BackGround/4.png" id="8_d0neb"]
 [ext_resource type="PackedScene" uid="uid://c3re1emrqmxxy" path="res://Scenes/Platform.tscn" id="8_gp8k1"]
 [ext_resource type="Texture2D" uid="uid://bgx471rcrkobb" path="res://Resources/Textures/Environment/Crest/Platforms/Flat/1.png" id="9_0sjt3"]
 [ext_resource type="Texture2D" uid="uid://bga840i8lxd3e" path="res://Resources/Textures/Environment/Crest/Platforms/Big/1.png" id="10_w6xqv"]
@@ -29,7 +30,9 @@
 [ext_resource type="Texture2D" uid="uid://b7ekoma0fmfri" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0000.png" id="27_mavxr"]
 [ext_resource type="Texture2D" uid="uid://d0ntdpln0ogtv" path="res://Resources/Textures/Environment/Crest/Items/Heart.png" id="28_cxrnp"]
 [ext_resource type="PackedScene" uid="uid://f0wcl3ix8nvw" path="res://Scenes/Trap.tscn" id="29_s13le"]
+[ext_resource type="Texture2D" uid="uid://rqcqlpblagro" path="res://Resources/Textures/Environment/Crest/Traps/Spikes.png" id="30_60bo7"]
 [ext_resource type="PackedScene" uid="uid://tccmexfshjmy" path="res://Scenes/Checkpoint.tscn" id="30_iw8la"]
+[ext_resource type="Texture2D" uid="uid://f173d7ra38hd" path="res://Resources/Textures/Environment/Crest/Background/1.png" id="33_jqrfj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5b1h"]
 particle_flag_disable_z = true
@@ -45,6 +48,13 @@ scale_over_velocity_max = 1.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_rheof")
+
+[node name="CoreBackGround" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.02, 0.02)
+
+[node name="1" type="Sprite2D" parent="CoreBackGround"]
+position = Vector2(995, 549)
+texture = ExtResource("33_jqrfj")
 
 [node name="Particles" type="Node2D" parent="."]
 
@@ -74,18 +84,22 @@ process_material = SubResource("ParticleProcessMaterial_w5b1h")
 
 [node name="Cliffs" type="Node2D" parent="."]
 
-[node name="Parallax2D" type="Parallax2D" parent="Cliffs"]
+[node name="Background" type="Parallax2D" parent="Cliffs"]
 scroll_scale = Vector2(0.95, 1)
 
-[node name="2" type="Sprite2D" parent="Cliffs/Parallax2D"]
+[node name="4" type="Sprite2D" parent="Cliffs/Background"]
+position = Vector2(2775, 1554)
+texture = ExtResource("8_d0neb")
+
+[node name="2" type="Sprite2D" parent="Cliffs/Background"]
 position = Vector2(4497, 1545)
 texture = ExtResource("5_f7pya")
 
-[node name="1" type="Sprite2D" parent="Cliffs/Parallax2D"]
+[node name="1" type="Sprite2D" parent="Cliffs/Background"]
 position = Vector2(5067, 1449)
 texture = ExtResource("6_fhwdh")
 
-[node name="3" type="Sprite2D" parent="Cliffs/Parallax2D"]
+[node name="3" type="Sprite2D" parent="Cliffs/Background"]
 position = Vector2(3677, 1568)
 texture = ExtResource("7_2covj")
 
@@ -114,7 +128,7 @@ texture = ExtResource("10_w6xqv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cliffs/BigCliffs/BigCliff1"]
 position = Vector2(-60, -202)
-polygon = PackedVector2Array(-712, -219, -850, 22, -939, 412, 930, 418, 804, 45, 697, 46, 709, -222, 243, -217, -280, -228)
+polygon = PackedVector2Array(-712, -219, -850, 22, -939, 412, 930, 418, 804, 45, 668, 36, 719, -132, 745, -215, 715, -217, 243, -217, -280, -228)
 
 [node name="BigCliff2" parent="Cliffs/BigCliffs" instance=ExtResource("8_gp8k1")]
 position = Vector2(6927, 1402)
@@ -316,17 +330,17 @@ process_material = SubResource("ParticleProcessMaterial_w5b1h")
 [node name="Signs" type="Node2D" parent="."]
 
 [node name="Sign" parent="Signs" instance=ExtResource("24_xkoe6")]
-position = Vector2(7377, 241)
+position = Vector2(11651, -994)
 texture = ExtResource("25_q6f27")
 type = "Paper"
 
 [node name="Sign2" parent="Signs" instance=ExtResource("24_xkoe6")]
-position = Vector2(4088, 1487)
+position = Vector2(11380, -994)
 texture = ExtResource("26_582xk")
 type = "Rock"
 
 [node name="Sign3" parent="Signs" instance=ExtResource("24_xkoe6")]
-position = Vector2(3826, 1482)
+position = Vector2(11103, -1018)
 texture = ExtResource("27_mavxr")
 type = "Scissors"
 
@@ -340,9 +354,13 @@ type = "Heart"
 [node name="Spikes" type="Node2D" parent="."]
 
 [node name="Spike1" parent="Spikes" instance=ExtResource("29_s13le")]
-position = Vector2(9953, 163)
+position = Vector2(9479, -21)
 size = Vector2(3000, 10)
 damage = 1
+
+[node name="Spikes" type="Sprite2D" parent="Spikes/Spike1"]
+position = Vector2(16, 3)
+texture = ExtResource("30_60bo7")
 
 [node name="Checkpoint" parent="." instance=ExtResource("30_iw8la")]
 position = Vector2(8200, -498)

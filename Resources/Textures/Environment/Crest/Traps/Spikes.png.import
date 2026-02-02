@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hdr5ri600ij4"
-path="res://.godot/imported/Full_HP.png-f7cedf820e33bf47ac46a7df0f23a981.ctex"
+uid="uid://rqcqlpblagro"
+path="res://.godot/imported/Spikes.png-8ffa06a8202cfb5a4acc014e66ea75d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/HUD/HPBar/Full_HP.png"
-dest_files=["res://.godot/imported/Full_HP.png-f7cedf820e33bf47ac46a7df0f23a981.ctex"]
+source_file="res://Resources/Textures/Environment/Crest/Traps/Spikes.png"
+dest_files=["res://.godot/imported/Spikes.png-8ffa06a8202cfb5a4acc014e66ea75d3.ctex"]
 
 [params]
 

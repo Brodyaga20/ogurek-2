@@ -16,8 +16,7 @@ func create_area():
 	area.body_entered.connect(_body_entered)
 	add_child(area)
 
-	
-	
+
 func _body_entered(body: Node2D):
 	if body.is_in_group("Player"):
 		#print(str(position - body.position) + str(body.get_parent().position))

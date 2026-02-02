@@ -15,15 +15,21 @@ var maxHealth = 4
 var health = 4
 var alive = true
 var transDeathAnim := ""
-var abilities = {"Health": false}
+var abilities = {"Health": false, "Stance": false}
+
+const barPosition = Vector2(-110, 180)
+const platePosition = Vector2(5, 205)
+const barWithPlatePosition = Vector2(-5, 205)
 
 const HPtype = {"Empty": 0, "CommonFull": 1}
 
 
-@onready var HP = {1: $Camera2D/HUD/HP/HP1/Sprite, 2: $Camera2D/HUD/HP/HP2/Sprite, 3: $Camera2D/HUD/HP/HP3/Sprite, 4: $Camera2D/HUD/HP/HP4/Sprite}
+@onready var HP = {1: $Camera2D/HUD/Bar/HP/HP1/Sprite, 2: $Camera2D/HUD/Bar/HP/HP2/Sprite, 3: $Camera2D/HUD/Bar/HP/HP3/Sprite, 4: $Camera2D/HUD/Bar/HP/HP4/Sprite}
 @onready var HUD = $Camera2D/HUD
-@onready var signSprite = $Camera2D/HUD/Sign
-@onready var barSprite = $Camera2D/HUD/Bar
+@onready var signPlate = $Camera2D/HUD/Sign
+@onready var signSprite = $Camera2D/HUD/Sign/Sign
+@onready var bar = $Camera2D/HUD/Bar
+
 
 func _ready():
 	signSprite.texture = null
@@ -31,21 +37,25 @@ func _ready():
 func collect(type: String):
 	if type in signs:
 		if collectedSigns.is_empty():
-			HUD.position.y += 200
+			abilities["Stance"] = true
+			signPlate.position = platePosition
+			bar.position = barWithPlatePosition
 		collectedSigns.append(type)
 		change_sign(type)
 	else:
 		match type:
 			"Heart":
 				abilities["Health"] = true
+				bar.position = barPosition
 
 func change_sign(newSign: String):
 	if signNow != newSign && collectedSigns.has(newSign):
 		signPrevious = signNow
 		signNow = newSign
 		signChangeTimer = animationLength
+	play_sign_change_anim()
 
-func playSignChangeAnim():
+func play_sign_change_anim():
 	signAnimationName = signPrevious + "-" + signNow
 	$SignChange.play(signAnimationName)
 
@@ -78,28 +88,27 @@ func _process(delta: float) -> void:
 	for i in range(4 - health):
 		HP[4 - i].frame = HPtype["Empty"]
 	if Input.is_action_just_pressed("Die"):
-		die()
+		$Camera2D.zoom *= 0.5
 	if Input.is_action_just_pressed("Reborn"):
 		alive = true
 		health = maxHealth
 	transDeathAnim = $Body.currentGlobalMovementState + "_DEATH"
-	if signChangeTimer <= 0:
-		if ((Input.is_action_just_pressed("Rock_Sign"))):
-			change_sign("Rock")
-		elif ((Input.is_action_just_pressed("Scissors_Sign"))):
-			change_sign("Scissors")
-		elif ((Input.is_action_just_pressed("Paper_Sign"))):
-			change_sign("Paper")
-		if Input.is_action_just_pressed("Next_Sign") && collectedSigns.size() >= 1:
-			signNowNumber = collectedSigns.find(signNow) + 1
-			signNextNumber = signNowNumber + 1
-			if signNextNumber > collectedSigns.size():
-				signNextNumber = 1
-			change_sign(collectedSigns[signNextNumber - 1])
+
+	if ((Input.is_action_just_pressed("Rock_Sign"))):
+		change_sign("Rock")
+	elif ((Input.is_action_just_pressed("Scissors_Sign"))):
+		change_sign("Scissors")
+	elif ((Input.is_action_just_pressed("Paper_Sign"))):
+		change_sign("Paper")
+	if Input.is_action_just_pressed("Next_Sign") && collectedSigns.size() >= 1:
+		signNowNumber = collectedSigns.find(signNow) + 1
+		signNextNumber = signNowNumber + 1
+		if signNextNumber > collectedSigns.size():
+			signNextNumber = 1
+		change_sign(collectedSigns[signNextNumber - 1])
 	
 	if signChangeTimer > 0:
 		signChangeTimer -= delta
-		playSignChangeAnim()
 		
 	#region Экран
 	if (Input.is_action_just_pressed("Full_Screen")):

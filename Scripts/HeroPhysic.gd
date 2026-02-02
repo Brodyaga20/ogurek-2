@@ -6,8 +6,8 @@ var noGameplayRandom := randi()
 var gameplayPandom := randi()
 var checkpoint := Vector2(0, 0)
 
-const maxSpeed := 700
-const maxSpeedAir := 850
+const maxSpeed := 730
+const maxSpeedAir := 810
 const minSpeed := 100
 
 var signNow = ""

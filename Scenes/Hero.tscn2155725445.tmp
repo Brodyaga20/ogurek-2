@@ -999,7 +999,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxtcv"]
-size = Vector2(43, 162)
+size = Vector2(45, 164)
 
 [node name="Hero" type="Node2D"]
 script = ExtResource("1_cfflp")
@@ -1021,7 +1021,7 @@ position = Vector2(960, 540)
 script = ExtResource("48_m3wm2")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Body"]
-position = Vector2(-2.5, -4)
+position = Vector2(-2.5, -5)
 shape = SubResource("RectangleShape2D_sxtcv")
 
 [node name="Sprite" type="Sprite2D" parent="Body"]
@@ -1037,7 +1037,7 @@ position_smoothing_speed = 1.0
 position = Vector2(-12, 3)
 
 [node name="Bar" type="Node2D" parent="Camera2D/HUD"]
-position = Vector2(16.5, -10.5)
+position = Vector2(158.5, 171.5)
 
 [node name="Bar" type="Sprite2D" parent="Camera2D/HUD/Bar"]
 z_index = 2
@@ -1048,6 +1048,7 @@ texture = ExtResource("197_gm4nh")
 
 [node name="HP" type="Node2D" parent="Camera2D/HUD/Bar"]
 texture_filter = 1
+position = Vector2(-1, 0)
 
 [node name="HP1" type="Node2D" parent="Camera2D/HUD/Bar/HP"]
 texture_filter = 1
@@ -1085,7 +1086,7 @@ texture = ExtResource("198_gp4og")
 hframes = 2
 
 [node name="Sign" type="Node2D" parent="Camera2D/HUD"]
-position = Vector2(24.5, -11.5)
+position = Vector2(5, 205)
 
 [node name="Plate" type="Sprite2D" parent="Camera2D/HUD/Sign"]
 z_index = 2
