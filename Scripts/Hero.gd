@@ -23,13 +23,13 @@ const barWithPlatePosition = Vector2(-5, 205)
 
 const HPtype = {"Empty": 0, "CommonFull": 1}
 
-
+#region onready
 @onready var HP = {1: $Camera2D/HUD/Bar/HP/HP1/Sprite, 2: $Camera2D/HUD/Bar/HP/HP2/Sprite, 3: $Camera2D/HUD/Bar/HP/HP3/Sprite, 4: $Camera2D/HUD/Bar/HP/HP4/Sprite}
 @onready var HUD = $Camera2D/HUD
 @onready var signPlate = $Camera2D/HUD/Sign
 @onready var signSprite = $Camera2D/HUD/Sign/Sign
 @onready var bar = $Camera2D/HUD/Bar
-
+#endregion
 
 func _ready():
 	signSprite.texture = null
@@ -87,13 +87,13 @@ func _process(delta: float) -> void:
 		HP[i + 1].frame = HPtype["CommonFull"]
 	for i in range(4 - health):
 		HP[4 - i].frame = HPtype["Empty"]
-	if Input.is_action_just_pressed("Die"):
-		$Camera2D.zoom *= 0.5
-	if Input.is_action_just_pressed("Reborn"):
+	if Input.is_action_just_pressed("Restart"):
+		$Body.position = Vector2(960, 540)
 		alive = true
 		health = maxHealth
 	transDeathAnim = $Body.currentGlobalMovementState + "_DEATH"
 
+#region signChanging
 	if ((Input.is_action_just_pressed("Rock_Sign"))):
 		change_sign("Rock")
 	elif ((Input.is_action_just_pressed("Scissors_Sign"))):
@@ -109,7 +109,9 @@ func _process(delta: float) -> void:
 	
 	if signChangeTimer > 0:
 		signChangeTimer -= delta
-		
+	
+#endregion
+	
 	#region Экран
 	if (Input.is_action_just_pressed("Full_Screen")):
 		if (DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN || DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN):

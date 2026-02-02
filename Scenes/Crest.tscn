@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cblrn66e400w4"]
+[gd_scene load_steps=36 format=3 uid="uid://cblrn66e400w4"]
 
 [ext_resource type="Script" uid="uid://cpbjblsfvd2h8" path="res://Scripts/Crest.gd" id="1_rheof"]
 [ext_resource type="Texture2D" uid="uid://d1jqonk3kigm1" path="res://Resources/Textures/Particles/Wind/Wind1.png" id="2_60bo7"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://rqcqlpblagro" path="res://Resources/Textures/Environment/Crest/Traps/Spikes.png" id="30_60bo7"]
 [ext_resource type="PackedScene" uid="uid://tccmexfshjmy" path="res://Scenes/Checkpoint.tscn" id="30_iw8la"]
 [ext_resource type="Texture2D" uid="uid://f173d7ra38hd" path="res://Resources/Textures/Environment/Crest/Background/1.png" id="33_jqrfj"]
+[ext_resource type="Texture2D" uid="uid://do8wbf2hi85yo" path="res://Resources/Textures/Temp/Restart.png" id="34_f7pya"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5b1h"]
 particle_flag_disable_z = true
@@ -365,3 +366,7 @@ texture = ExtResource("30_60bo7")
 [node name="Checkpoint" parent="." instance=ExtResource("30_iw8la")]
 position = Vector2(8200, -498)
 size = Vector2(50, 200)
+
+[node name="Wind1" type="Sprite2D" parent="."]
+position = Vector2(1208, 797)
+texture = ExtResource("34_f7pya")
