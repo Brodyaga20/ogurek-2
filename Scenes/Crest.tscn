@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cblrn66e400w4"]
+[gd_scene load_steps=38 format=3 uid="uid://cblrn66e400w4"]
 
 [ext_resource type="Script" uid="uid://cpbjblsfvd2h8" path="res://Scripts/Crest.gd" id="1_rheof"]
 [ext_resource type="Texture2D" uid="uid://d1jqonk3kigm1" path="res://Resources/Textures/Particles/Wind/Wind1.png" id="2_60bo7"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://cvhhno2230daf" path="res://Resources/Textures/Environment/Crest/Platforms/Small/6.png" id="21_uy404"]
 [ext_resource type="Texture2D" uid="uid://edj85x4n76b6" path="res://Resources/Textures/Environment/Crest/Platforms/Small/8.png" id="22_r40rm"]
 [ext_resource type="PackedScene" uid="uid://xoehne8p6cgi" path="res://Scenes/Hero.tscn" id="23_bfipr"]
+[ext_resource type="Texture2D" uid="uid://bkj31hixrlbj2" path="res://Resources/Textures/Environment/Crest/Platforms/Small/11.png" id="23_fhwdh"]
+[ext_resource type="Texture2D" uid="uid://bbmmblh2eqtyj" path="res://Resources/Textures/Environment/Crest/Platforms/Small/12.png" id="24_2covj"]
 [ext_resource type="PackedScene" uid="uid://cxmxmmlohrq2p" path="res://Scenes/Collectible.tscn" id="24_xkoe6"]
 [ext_resource type="Texture2D" uid="uid://cvgxdn58u0pjs" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0000.png" id="25_q6f27"]
 [ext_resource type="Texture2D" uid="uid://cepand2ubomvn" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0014.png" id="26_582xk"]
@@ -235,7 +237,7 @@ sideOffset = 12.0
 lowerSide = 150.0
 mass = 10
 hitboxType = 1
-texture = ExtResource("16_04dqc")
+texture = ExtResource("23_fhwdh")
 
 [node name="Cliff10" parent="Cliffs/SmallCliffs/Lift2" instance=ExtResource("8_gp8k1")]
 position = Vector2(6287, 155)
@@ -244,7 +246,7 @@ sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
 hitboxType = 1
-texture = ExtResource("14_51k1f")
+texture = ExtResource("24_2covj")
 
 [node name="Cliff11" parent="Cliffs/SmallCliffs/Lift2" instance=ExtResource("8_gp8k1")]
 position = Vector2(5833, 37)
@@ -265,7 +267,7 @@ hitboxType = 1
 texture = ExtResource("22_r40rm")
 
 [node name="Cliff13" parent="Cliffs/SmallCliffs/Lift2" instance=ExtResource("8_gp8k1")]
-position = Vector2(5766, -270)
+position = Vector2(5817, -272)
 upperOffset = 12.0
 sideOffset = 12.0
 lowerSide = 150.0
@@ -300,7 +302,10 @@ mass = 15
 hitboxType = 1
 texture = ExtResource("14_51k1f")
 
+[node name="SpikeSegment" type="Node2D" parent="Cliffs/SmallCliffs"]
+
 [node name="Hero" parent="." instance=ExtResource("23_bfipr")]
+position = Vector2(5816, -431)
 
 [node name="Particles2" type="Node2D" parent="."]
 
