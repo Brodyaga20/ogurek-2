@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cblrn66e400w4"]
+[gd_scene load_steps=37 format=3 uid="uid://cblrn66e400w4"]
 
 [ext_resource type="Script" uid="uid://cpbjblsfvd2h8" path="res://Scripts/Crest.gd" id="1_rheof"]
 [ext_resource type="Texture2D" uid="uid://d1jqonk3kigm1" path="res://Resources/Textures/Particles/Wind/Wind1.png" id="2_60bo7"]
@@ -21,11 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://cshxihn32bjxp" path="res://Resources/Textures/Environment/Crest/Platforms/Small/7.png" id="18_w37xe"]
 [ext_resource type="Texture2D" uid="uid://2402cxieunur" path="res://Resources/Textures/Environment/Crest/Platforms/Small/9.png" id="19_mnov7"]
 [ext_resource type="Texture2D" uid="uid://ddhmqyphcbbbd" path="res://Resources/Textures/Environment/Crest/Platforms/Small/10.png" id="20_opccv"]
-[ext_resource type="Texture2D" uid="uid://cvhhno2230daf" path="res://Resources/Textures/Environment/Crest/Platforms/Small/6.png" id="21_uy404"]
-[ext_resource type="Texture2D" uid="uid://edj85x4n76b6" path="res://Resources/Textures/Environment/Crest/Platforms/Small/8.png" id="22_r40rm"]
 [ext_resource type="PackedScene" uid="uid://xoehne8p6cgi" path="res://Scenes/Hero.tscn" id="23_bfipr"]
 [ext_resource type="Texture2D" uid="uid://bkj31hixrlbj2" path="res://Resources/Textures/Environment/Crest/Platforms/Small/11.png" id="23_fhwdh"]
 [ext_resource type="Texture2D" uid="uid://bbmmblh2eqtyj" path="res://Resources/Textures/Environment/Crest/Platforms/Small/12.png" id="24_2covj"]
+[ext_resource type="Texture2D" uid="uid://b6povhybi063p" path="res://Resources/Textures/Environment/Crest/Platforms/Small/13.png" id="24_fhwdh"]
 [ext_resource type="PackedScene" uid="uid://cxmxmmlohrq2p" path="res://Scenes/Collectible.tscn" id="24_xkoe6"]
 [ext_resource type="Texture2D" uid="uid://cvgxdn58u0pjs" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0000.png" id="25_q6f27"]
 [ext_resource type="Texture2D" uid="uid://cepand2ubomvn" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0014.png" id="26_582xk"]
@@ -108,16 +107,16 @@ texture = ExtResource("7_2covj")
 
 [node name="Surfaces" type="Node2D" parent="Cliffs"]
 
-[node name="Cliff1" parent="Cliffs/Surfaces" instance=ExtResource("8_gp8k1")]
+[node name="FlatCliff1" parent="Cliffs/Surfaces" instance=ExtResource("8_gp8k1")]
 position = Vector2(4195, 2021)
 upperOffset = 40.0
 type = 2
 hitboxType = 2
 texture = ExtResource("9_0sjt3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cliffs/Surfaces/Cliff1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cliffs/Surfaces/FlatCliff1"]
 position = Vector2(-60, -202)
-polygon = PackedVector2Array(-2326, 373, 2117, 339, 1785, -179, 1682, -186, 1600.3701, -180.34248, 1581, -179, 1482, -186, 1400, -179, 1315, -184, 1211, -180, 1121, -186, 928, -184, 815, -178, 736, -182, 655, -179, 456, -184, 358, -178, 228, -184, 135, -176, 63, -181, -47, -174, -161, -181, -199, -183, -241, -182, -386, -179, -499, -186, -606, -184, -670, -180, -726, -184, -798, -183, -857, -178, -926, -179, -1031, -173, -1152, -175, -1233, -179, -1313, -171, -1488, -185, -1618, -175, -1754, -178, -1872, -186)
+polygon = PackedVector2Array(-2326, 373, 2117, 339, 1785, -179, 1682, -186, 1600.3701, -180.34248, 1581, -179, 1482, -186, 1400, -179, 1315, -184, 1211, -180, 1121, -186, 928, -184, 815, -178, 736, -182, 655, -179, 456, -184, 358, -178, 228, -184, 135, -176, 63, -181, -47, -174, -161, -181, -199, -183, -241, -182, -386, -179, -499, -186, -606, -184, -670, -180, -726, -184, -798, -183, -857, -178, -926, -179, -1031, -173, -1152, -175, -1233, -179, -1313, -173, -1488, -185, -1618, -175, -1754, -178, -1872, -186)
 
 [node name="BigCliffs" type="Node2D" parent="Cliffs"]
 
@@ -131,7 +130,7 @@ texture = ExtResource("10_w6xqv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cliffs/BigCliffs/BigCliff1"]
 position = Vector2(-60, -202)
-polygon = PackedVector2Array(-712, -219, -850, 22, -939, 412, 930, 418, 804, 45, 668, 36, 719, -132, 745, -215, 715, -217, 243, -217, -280, -228)
+polygon = PackedVector2Array(-712, -219, -850, 22, -939, 412, 930, 418, 804, 45, 668, 36, 719, -132, 735, -217, 715, -217, 243, -217, -280, -228)
 
 [node name="BigCliff2" parent="Cliffs/BigCliffs" instance=ExtResource("8_gp8k1")]
 position = Vector2(6927, 1402)
@@ -145,7 +144,7 @@ texture = ExtResource("11_m2igs")
 position = Vector2(0, -454)
 polygon = PackedVector2Array(-1139, -531, -1022, -458, -904, -246, -737, -150, -735, -124, -751, -30, -746, 0, -710, 43, -954, 547, -1525, 1481, 1026, 1493, 1001, 649, 926, 291, 866, 155, 838, 30, 732, 44, 725, 10, 717, -29, 716, -89, 722, -120, 739, -157, 761, -224, 756, -297, 693, -511, 120, -523, -563, -519)
 
-[node name="Cliff15" parent="Cliffs/BigCliffs" instance=ExtResource("8_gp8k1")]
+[node name="BigCliff3" parent="Cliffs/BigCliffs" instance=ExtResource("8_gp8k1")]
 position = Vector2(7981, -45)
 upperOffset = 12.0
 sideOffset = 12.0
@@ -160,7 +159,7 @@ texture = ExtResource("12_7ajwm")
 
 [node name="Cliff1" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(3146, 1036)
-upperOffset = 12.0
+upperOffset = 20.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -169,7 +168,7 @@ texture = ExtResource("13_13387")
 
 [node name="Cliff2" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(2665, 1125)
-upperOffset = 12.0
+upperOffset = 23.0
 sideOffset = 12.0
 lowerSide = 120.0
 mass = 10
@@ -178,7 +177,7 @@ texture = ExtResource("14_51k1f")
 
 [node name="Cliff3" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(2601, 1399)
-upperOffset = 15.0
+upperOffset = 23.0
 sideOffset = 12.0
 lowerSide = 120.0
 mass = 10
@@ -187,14 +186,14 @@ texture = ExtResource("15_scqwt")
 
 [node name="Cliff4" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(3523, 1113)
-upperOffset = 9.0
+upperOffset = 15.0
 sideOffset = 12.0
 mass = 6
 texture = ExtResource("16_04dqc")
 
 [node name="Cliff5" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(3832, 968)
-upperOffset = 15.0
+upperOffset = 23.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 20
@@ -203,7 +202,7 @@ texture = ExtResource("17_cryey")
 
 [node name="Cliff6" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(4451, 797)
-upperOffset = 15.0
+upperOffset = 23.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -212,7 +211,7 @@ texture = ExtResource("18_w37xe")
 
 [node name="Cliff7" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(5003, 690)
-upperOffset = 15.0
+upperOffset = 23.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -221,7 +220,7 @@ texture = ExtResource("19_mnov7")
 
 [node name="Cliff8" parent="Cliffs/SmallCliffs/Lift1" instance=ExtResource("8_gp8k1")]
 position = Vector2(5509, 538)
-upperOffset = 12.0
+upperOffset = 23.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -232,7 +231,7 @@ texture = ExtResource("20_opccv")
 
 [node name="Cliff9" parent="Cliffs/SmallCliffs/Lift2" instance=ExtResource("8_gp8k1")]
 position = Vector2(6769, 291)
-upperOffset = 12.0
+upperOffset = 18.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 10
@@ -241,7 +240,7 @@ texture = ExtResource("23_fhwdh")
 
 [node name="Cliff10" parent="Cliffs/SmallCliffs/Lift2" instance=ExtResource("8_gp8k1")]
 position = Vector2(6287, 155)
-upperOffset = 12.0
+upperOffset = 23.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -255,16 +254,16 @@ sideOffset = 12.0
 lowerSide = 150.0
 mass = 20
 hitboxType = 1
-texture = ExtResource("21_uy404")
+texture = ExtResource("24_2covj")
 
 [node name="Cliff12" parent="Cliffs/SmallCliffs/Lift2" instance=ExtResource("8_gp8k1")]
-position = Vector2(4903, -73)
-upperOffset = 12.0
+position = Vector2(5009, -73)
+upperOffset = 30.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 30
 hitboxType = 1
-texture = ExtResource("22_r40rm")
+texture = ExtResource("24_fhwdh")
 
 [node name="Cliff13" parent="Cliffs/SmallCliffs/Lift2" instance=ExtResource("8_gp8k1")]
 position = Vector2(5817, -272)
@@ -305,7 +304,7 @@ texture = ExtResource("14_51k1f")
 [node name="SpikeSegment" type="Node2D" parent="Cliffs/SmallCliffs"]
 
 [node name="Hero" parent="." instance=ExtResource("23_bfipr")]
-position = Vector2(5816, -431)
+position = Vector2(6076, -381)
 
 [node name="Particles2" type="Node2D" parent="."]
 
