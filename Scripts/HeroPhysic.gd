@@ -5,6 +5,9 @@ var accelerationAir := 200
 var noGameplayRandom := randi()
 var gameplayPandom := randi()
 var checkpoint := Vector2(0, 0)
+var autoJump = false
+var canAutoJump = false
+var mustAutoJump = false
 
 const maxSpeed := 770
 const maxSpeedAir := 810
@@ -23,6 +26,7 @@ const dashSpeed := 2000
 
 var dashTimer : float = 0
 var hangTimer : float = 0
+var coyoteTimer : float = 0
 
 const airFriction := 0.84
 const groundFriction := 0.81
@@ -31,14 +35,14 @@ const dashFriction := 0.99
 var direction := 0
 var lastDirection := 0
 
-var canDJump = true
+var canDJump = false
 var canDash = true
 
 var currentTransAnimation := ""
 var currentStableAnimation := ""
 
 var stopMove := false
-var changePoseTimer : float = 0 #аххахахаххахаха
+var changePoseTimer : float = 0
 var stopFallingTimer := 0
 enum verticalState {GROUND, WALK, JUMP, FALL, DASH, HANG, FASTFALL, DEATH}
 enum horizontalState {CENTER, RIGHT, LEFT}
@@ -69,6 +73,11 @@ func enter_vertical_state() -> void:
 	changePoseTimer = 0.1
 	match currentVerticalState:
 		verticalState.GROUND:
+			print(autoJump)
+			if autoJump:
+				set_vertical_state(verticalState.JUMP)
+				velocity.y = -jumpSpeed
+				autoJump = false
 			canDash = true
 			canDJump = true
 			pass
@@ -110,6 +119,9 @@ func go_to_checkpoint():
 	position = checkpoint
 
 func update_state(delta: float) -> void:
+	if coyoteTimer > 0:
+		coyoteTimer -= delta
+	
 	currentGlobalMovementState = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
 	if changePoseTimer != 0:
 		changePoseTimer -= delta
@@ -117,8 +129,8 @@ func update_state(delta: float) -> void:
 		currentStableAnimation = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
 		start_playing_stable_anim()
 		changePoseTimer = 0
-	
 	direction = int(Input.is_action_pressed("Right")) -  int(Input.is_action_pressed("Left"))
+	
 	match currentVerticalState:
 		verticalState.GROUND:
 			velocity.x += direction * acceleration
@@ -130,6 +142,7 @@ func update_state(delta: float) -> void:
 			elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
 				set_vertical_state(verticalState.DASH)
 			elif !is_on_floor():
+				coyoteTimer = 0.06
 				set_vertical_state(verticalState.FALL)
 			elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
 				set_vertical_state(verticalState.DASH)
@@ -154,16 +167,21 @@ func update_state(delta: float) -> void:
 			velocity.x += direction * accelerationAir
 			velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
 			velocity.y += gravAcc * delta
+			
 			if is_on_floor():
 				set_vertical_state(verticalState.GROUND)
 			elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
 				set_vertical_state(verticalState.DASH)
-			elif Input.is_action_just_pressed("Jump") && signNow == "Paper" && canDJump:
+			elif Input.is_action_just_pressed("Jump") && ((signNow == "Paper" && canDJump) || (coyoteTimer > 0)):
 				velocity.y = -jumpSpeed
 				canDJump = false
 				set_vertical_state(verticalState.JUMP)
 			elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
 				set_vertical_state(verticalState.HANG)
+			elif Input.is_action_just_pressed("Jump") && canAutoJump:
+				print("yeee")
+				autoJump = true
+				canAutoJump = false
 			if !direction:
 				velocity.x *= airFriction
 			if direction:
@@ -218,3 +236,13 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	signNow = get_parent().signNow
+
+
+func _on_coyote_area_body_entered(_body: Node2D) -> void:
+	canAutoJump = true
+	pass # Replace with function body.
+
+
+func _on_coyote_area_body_exited(_body: Node2D) -> void:
+	canAutoJump = false
+	pass # Replace with function body.

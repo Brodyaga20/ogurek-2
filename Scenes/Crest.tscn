@@ -303,6 +303,7 @@ texture = ExtResource("14_51k1f")
 [node name="SpikeSegment" type="Node2D" parent="Cliffs/SmallCliffs" unique_id=600957706]
 
 [node name="Hero" parent="." unique_id=1801713874 instance=ExtResource("23_bfipr")]
+position = Vector2(-8, -480)
 
 [node name="Particles2" type="Node2D" parent="." unique_id=375667545]
 
