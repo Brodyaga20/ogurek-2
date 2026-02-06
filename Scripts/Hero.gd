@@ -37,7 +37,6 @@ const HPtype = {"Empty": 0, "CommonFull": 1}
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	save_dict = { "pos_x": $Body.position.x, "pos_y": $Body.position.y }
-	print(save_dict)
 	var json_string = JSON.stringify(save_dict)
 	save_file.store_line(json_string)
 
@@ -53,7 +52,6 @@ func load_game():
 			continue
 
 		var node_data = json.data
-		print(node_data)
 		$Body.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 
 func _ready():

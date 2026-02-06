@@ -90,7 +90,6 @@ func enter_vertical_state() -> void:
 	changePoseTimer = changePoseTimerMax
 	match currentVerticalState:
 		verticalState.JUMP:
-			print(position)
 			canContinueJump = true
 			jumpContinueTimer = jumpContinueTimerMax
 		verticalState.GROUND:
