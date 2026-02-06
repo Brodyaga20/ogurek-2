@@ -1,7 +1,6 @@
 extends Node2D
 var signNow := "None"
 var signPrevious := ""
-var signChangeTimer : float = 0
 var velocityX : float = 0
 var signAnimationName := ""
 var cameraSpeed = Vector2.ZERO
@@ -16,6 +15,10 @@ var health = 4
 var alive = true
 var transDeathAnim := ""
 var abilities = {"Health": false, "Stance": false}
+@onready var save_dict = {
+	"pos_x": $Body.position.x,
+	"pos_y": $Body.position.y
+}
 
 const barPosition = Vector2(-110, 180)
 const platePosition = Vector2(5, 205)
@@ -30,6 +33,28 @@ const HPtype = {"Empty": 0, "CommonFull": 1}
 @onready var signSprite = $Camera2D/HUD/Sign/Sign
 @onready var bar = $Camera2D/HUD/Bar
 #endregion
+
+func save_game():
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	save_dict = { "pos_x": $Body.position.x, "pos_y": $Body.position.y }
+	print(save_dict)
+	var json_string = JSON.stringify(save_dict)
+	save_file.store_line(json_string)
+
+func load_game():
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+		var json = JSON.new()
+		
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+
+		var node_data = json.data
+		print(node_data)
+		$Body.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 
 func _ready():
 	signSprite.texture = null
@@ -52,7 +77,6 @@ func change_sign(newSign: String):
 	if signNow != newSign && collectedSigns.has(newSign):
 		signPrevious = signNow
 		signNow = newSign
-		signChangeTimer = animationLength
 	play_sign_change_anim()
 
 func play_sign_change_anim():
@@ -82,18 +106,22 @@ func set_camera_position() -> void:
 func _physics_process(_delta: float) -> void:
 	set_camera_position()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for i in range(health):
 		HP[i + 1].frame = HPtype["CommonFull"]
 	for i in range(4 - health):
 		HP[4 - i].frame = HPtype["Empty"]
 	if Input.is_action_just_pressed("Restart"):
-		$Body.position = Vector2(960, 540)
+		$Body.go_to_checkpoint()
 		alive = true
 		health = maxHealth
 	transDeathAnim = $Body.currentGlobalMovementState + "_DEATH"
-
-#region signChanging
+	if Input.is_action_just_pressed("Quick_Save"):
+		save_game()
+	if Input.is_action_just_pressed("Quick_Load"):
+		load_game()
+	
+	#region Смена стойки
 	if ((Input.is_action_just_pressed("Rock_Sign"))):
 		change_sign("Rock")
 	elif ((Input.is_action_just_pressed("Scissors_Sign"))):
@@ -107,10 +135,8 @@ func _process(delta: float) -> void:
 			signNextNumber = 1
 		change_sign(collectedSigns[signNextNumber - 1])
 	
-	if signChangeTimer > 0:
-		signChangeTimer -= delta
 	
-#endregion
+	#endregion
 	
 	#region Экран
 	if (Input.is_action_just_pressed("Full_Screen")):

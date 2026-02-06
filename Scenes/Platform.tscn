@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3re1emrqmxxy"]
+[gd_scene format=3 uid="uid://c3re1emrqmxxy"]
 
 [ext_resource type="Texture2D" uid="uid://4vhst8lxro3d" path="res://Resources/Textures/Environment/EmptyBlock.png" id="1_esyhg"]
 [ext_resource type="Script" uid="uid://8kvs224m4chd" path="res://Scripts/Platform.gd" id="1_fxn6g"]
 
-[node name="Cliff1" type="StaticBody2D"]
+[node name="Cliff1" type="StaticBody2D" unique_id=1015466996]
 script = ExtResource("1_fxn6g")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1591980101]
 texture = ExtResource("1_esyhg")

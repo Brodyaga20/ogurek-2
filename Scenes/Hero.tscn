@@ -990,22 +990,6 @@ _data = {
 &"RESET": SubResource("Animation_rqnp8")
 }
 
-[sub_resource type="Animation" id="Animation_htclj"]
-resource_name = "Appear"
-step = 0.06666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Bar/Bar:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
 [sub_resource type="Animation" id="Animation_o0b4j"]
 length = 0.001
 tracks/0/type = "value"
@@ -1023,14 +1007,14 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_55o2c"]
 _data = {
-&"Appear": SubResource("Animation_htclj"),
 &"RESET": SubResource("Animation_o0b4j")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gp4og"]
-size = Vector2(16, 95)
+size = Vector2(16, 94)
 
 [node name="Hero" type="Node2D" unique_id=1192400866]
+z_index = 5
 script = ExtResource("1_cfflp")
 
 [node name="SignAnimation" type="AnimationPlayer" parent="." unique_id=346192311]
@@ -1058,7 +1042,7 @@ polygon = PackedVector2Array(8, 36, 27, 100, 43, 100, 60, 35, 60, -29, 51, -61, 
 [node name="CoyoteArea" type="Area2D" parent="Body" unique_id=796600535]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CoyoteArea" unique_id=1933520157]
-position = Vector2(-3, 126.5)
+position = Vector2(-3, 127)
 shape = SubResource("RectangleShape2D_gp4og")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=829295455]
@@ -1066,13 +1050,13 @@ position = Vector2(957, 527)
 position_smoothing_speed = 1.0
 
 [node name="HUD" type="Node2D" parent="Camera2D" unique_id=1059420288]
+z_index = 10
 position = Vector2(-12, 3)
 
 [node name="Bar" type="Node2D" parent="Camera2D/HUD" unique_id=1726626402]
 position = Vector2(16.5, -10.5)
 
 [node name="Bar" type="Sprite2D" parent="Camera2D/HUD/Bar" unique_id=2104727479]
-z_index = 2
 texture_filter = 1
 position = Vector2(-622.5, -643.5)
 scale = Vector2(2, 2)
@@ -1086,7 +1070,6 @@ texture_filter = 1
 position = Vector2(-672.5, -660.5)
 
 [node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP1" unique_id=953178376]
-z_index = 3
 texture_filter = 1
 texture = ExtResource("198_gp4og")
 hframes = 2
@@ -1095,7 +1078,6 @@ hframes = 2
 position = Vector2(-560.5, -660.5)
 
 [node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP2" unique_id=1484924724]
-z_index = 3
 texture_filter = 1
 texture = ExtResource("198_gp4og")
 hframes = 2
@@ -1104,7 +1086,6 @@ hframes = 2
 position = Vector2(-672.5, -624.5)
 
 [node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP3" unique_id=266708854]
-z_index = 3
 texture = ExtResource("198_gp4og")
 hframes = 2
 
@@ -1112,7 +1093,6 @@ hframes = 2
 position = Vector2(-560.5, -624.5)
 
 [node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP4" unique_id=2010290192]
-z_index = 3
 texture = ExtResource("198_gp4og")
 hframes = 2
 
@@ -1120,7 +1100,6 @@ hframes = 2
 position = Vector2(24.5, -11.5)
 
 [node name="Plate" type="Sprite2D" parent="Camera2D/HUD/Sign" unique_id=1136067944]
-z_index = 2
 z_as_relative = false
 texture_filter = 1
 position = Vector2(-846.5, -643.5)
@@ -1128,7 +1107,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("47_sxtcv")
 
 [node name="Sign" type="Sprite2D" parent="Camera2D/HUD/Sign" unique_id=573412532]
-z_index = 2
 texture_filter = 1
 position = Vector2(-846, -641)
 scale = Vector2(0.5, 0.5)

@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dpc2xvfanhycd" path="res://Resources/Textures/Environment/Crest/Platforms/Small/4.png" id="13_13387"]
 [ext_resource type="Texture2D" uid="uid://bmoo81plv2d0v" path="res://Resources/Textures/Environment/Crest/Platforms/Small/5.png" id="14_51k1f"]
 [ext_resource type="Texture2D" uid="uid://cobwq8rb1gyd3" path="res://Resources/Textures/Environment/Crest/Platforms/Small/2.png" id="15_scqwt"]
+[ext_resource type="Texture2D" uid="uid://dpuxhvlmw67cb" path="res://Resources/Textures/Environment/Crest/Platforms/Big/4.png" id="15_w6xqv"]
 [ext_resource type="Texture2D" uid="uid://27wrkg1k4s8i" path="res://Resources/Textures/Environment/Crest/Platforms/Small/3.png" id="16_04dqc"]
 [ext_resource type="Texture2D" uid="uid://v3v7yc5nopmj" path="res://Resources/Textures/Environment/Crest/Platforms/Small/1.png" id="17_cryey"]
 [ext_resource type="Texture2D" uid="uid://cshxihn32bjxp" path="res://Resources/Textures/Environment/Crest/Platforms/Small/7.png" id="18_w37xe"]
@@ -64,9 +65,12 @@ scroll_scale = Vector2(0.02, 0.02)
 position = Vector2(995, 549)
 texture = ExtResource("33_jqrfj")
 
-[node name="Particles" type="Node2D" parent="." unique_id=1272290835]
+[node name="Particles" type="Node2D" parent="." unique_id=418111053]
 
-[node name="WindMaker1" type="GPUParticles2D" parent="Particles" unique_id=111040176]
+[node name="BackGround" type="Node2D" parent="Particles" unique_id=1272290835]
+z_index = 6
+
+[node name="WindMaker1" type="GPUParticles2D" parent="Particles/BackGround" unique_id=111040176]
 position = Vector2(1919, 540)
 amount = 5
 texture = ExtResource("2_60bo7")
@@ -74,7 +78,7 @@ lifetime = 4.0
 preprocess = 4.0
 process_material = SubResource("ParticleProcessMaterial_w5b1h")
 
-[node name="WindMaker2" type="GPUParticles2D" parent="Particles" unique_id=1641539070]
+[node name="WindMaker2" type="GPUParticles2D" parent="Particles/BackGround" unique_id=1641539070]
 position = Vector2(1919, 540)
 amount = 10
 texture = ExtResource("3_d0neb")
@@ -82,7 +86,7 @@ lifetime = 4.0
 preprocess = 4.0
 process_material = SubResource("ParticleProcessMaterial_w5b1h")
 
-[node name="WindMaker3" type="GPUParticles2D" parent="Particles" unique_id=1747094081]
+[node name="WindMaker3" type="GPUParticles2D" parent="Particles/BackGround" unique_id=1747094081]
 position = Vector2(1919, 540)
 amount = 5
 texture = ExtResource("4_jqrfj")
@@ -90,7 +94,56 @@ lifetime = 4.0
 preprocess = 4.0
 process_material = SubResource("ParticleProcessMaterial_w5b1h")
 
+[node name="ForeGround" type="Node2D" parent="Particles" unique_id=375667545]
+z_index = 1
+
+[node name="WindMaker1" type="GPUParticles2D" parent="Particles/ForeGround" unique_id=961680901]
+position = Vector2(1919, 540)
+amount = 5
+texture = ExtResource("2_60bo7")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_w5b1h")
+
+[node name="WindMaker2" type="GPUParticles2D" parent="Particles/ForeGround" unique_id=718306125]
+position = Vector2(1919, 540)
+amount = 10
+texture = ExtResource("3_d0neb")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_w5b1h")
+
+[node name="WindMaker3" type="GPUParticles2D" parent="Particles/ForeGround" unique_id=1324305098]
+position = Vector2(1919, 540)
+amount = 5
+texture = ExtResource("4_jqrfj")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_w5b1h")
+
+[node name="Spikes" type="Node2D" parent="." unique_id=1586884408]
+
+[node name="Spike1" parent="Spikes" unique_id=663799335 instance=ExtResource("29_s13le")]
+position = Vector2(9479, -21)
+size = Vector2(2500, 10)
+damage = 1
+
+[node name="Spikes" type="Sprite2D" parent="Spikes/Spike1" unique_id=1285771486]
+position = Vector2(16, 3)
+texture = ExtResource("30_60bo7")
+
+[node name="Spike2" parent="Spikes" unique_id=808063339 instance=ExtResource("29_s13le")]
+position = Vector2(11333, -168)
+rotation = -1.5707964
+size = Vector2(2500, 10)
+damage = 1
+
+[node name="Spikes" type="Sprite2D" parent="Spikes/Spike2" unique_id=1111950585]
+position = Vector2(16, 3)
+texture = ExtResource("30_60bo7")
+
 [node name="Cliffs" type="Node2D" parent="." unique_id=582525888]
+z_index = 2
 
 [node name="Background" type="Parallax2D" parent="Cliffs" unique_id=663417285]
 scroll_scale = Vector2(0.95, 1)
@@ -116,7 +169,7 @@ texture = ExtResource("7_2covj")
 [node name="FlatCliff1" parent="Cliffs/Surfaces" unique_id=1332773386 instance=ExtResource("8_gp8k1")]
 position = Vector2(4195, 2021)
 upperOffset = 40.0
-type = 2
+type = 1
 hitboxType = 2
 texture = ExtResource("9_0sjt3")
 
@@ -156,8 +209,28 @@ upperOffset = 12.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 50
+type = 1
 hitboxType = 1
 texture = ExtResource("24_fhwdh")
+
+[node name="BigCliff4" parent="Cliffs/BigCliffs" unique_id=1282253269 instance=ExtResource("8_gp8k1")]
+position = Vector2(11076, 18)
+upperOffset = 12.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 50
+type = 1
+hitboxType = 1
+texture = ExtResource("24_fhwdh")
+
+[node name="BigCliff5" parent="Cliffs/BigCliffs" unique_id=665701018 instance=ExtResource("8_gp8k1")]
+position = Vector2(12109, -261)
+upperOffset = 12.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 50
+type = 1
+texture = ExtResource("15_w6xqv")
 
 [node name="SmallCliffs" type="Node2D" parent="Cliffs" unique_id=843665830]
 
@@ -309,51 +382,72 @@ texture = ExtResource("28_0sjt3")
 
 [node name="SpikeSegment" type="Node2D" parent="Cliffs/SmallCliffs" unique_id=600957706]
 
+[node name="Cliff17" parent="Cliffs/SmallCliffs/SpikeSegment" unique_id=1522404727 instance=ExtResource("8_gp8k1")]
+position = Vector2(8730, -282)
+upperOffset = 18.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 10
+hitboxType = 1
+texture = ExtResource("23_fhwdh")
+
+[node name="Cliff18" parent="Cliffs/SmallCliffs/SpikeSegment" unique_id=1261862246 instance=ExtResource("8_gp8k1")]
+position = Vector2(9167, -354)
+upperOffset = 18.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 10
+hitboxType = 1
+texture = ExtResource("23_fhwdh")
+
+[node name="Cliff19" parent="Cliffs/SmallCliffs/SpikeSegment" unique_id=2132083798 instance=ExtResource("8_gp8k1")]
+position = Vector2(9623, -270)
+upperOffset = 18.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 10
+hitboxType = 1
+texture = ExtResource("23_fhwdh")
+
+[node name="Cliff20" parent="Cliffs/SmallCliffs/SpikeSegment" unique_id=1914759487 instance=ExtResource("8_gp8k1")]
+position = Vector2(9995, -445)
+upperOffset = 18.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 10
+hitboxType = 1
+texture = ExtResource("23_fhwdh")
+
+[node name="Lift3" type="Node2D" parent="Cliffs/SmallCliffs" unique_id=1235470279]
+
+[node name="Cliff21" parent="Cliffs/SmallCliffs/Lift3" unique_id=811335979 instance=ExtResource("8_gp8k1")]
+position = Vector2(11170, -193)
+upperOffset = 18.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 10
+hitboxType = 1
+texture = ExtResource("23_fhwdh")
+
+[node name="Cliff22" parent="Cliffs/SmallCliffs/Lift3" unique_id=1113118433 instance=ExtResource("8_gp8k1")]
+position = Vector2(10780, -363)
+upperOffset = 18.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 10
+hitboxType = 1
+texture = ExtResource("23_fhwdh")
+
+[node name="Cliff23" parent="Cliffs/SmallCliffs/Lift3" unique_id=72215453 instance=ExtResource("8_gp8k1")]
+position = Vector2(11168, -533)
+upperOffset = 18.0
+sideOffset = 12.0
+lowerSide = 150.0
+mass = 10
+hitboxType = 1
+texture = ExtResource("23_fhwdh")
+
 [node name="Hero" parent="." unique_id=1801713874 instance=ExtResource("23_bfipr")]
-position = Vector2(6598, -1391)
-
-[node name="Particles2" type="Node2D" parent="." unique_id=375667545]
-
-[node name="WindMaker1" type="GPUParticles2D" parent="Particles2" unique_id=961680901]
-position = Vector2(1919, 540)
-amount = 5
-texture = ExtResource("2_60bo7")
-lifetime = 4.0
-preprocess = 4.0
-process_material = SubResource("ParticleProcessMaterial_w5b1h")
-
-[node name="WindMaker2" type="GPUParticles2D" parent="Particles2" unique_id=718306125]
-position = Vector2(1919, 540)
-amount = 10
-texture = ExtResource("3_d0neb")
-lifetime = 4.0
-preprocess = 4.0
-process_material = SubResource("ParticleProcessMaterial_w5b1h")
-
-[node name="WindMaker3" type="GPUParticles2D" parent="Particles2" unique_id=1324305098]
-position = Vector2(1919, 540)
-amount = 5
-texture = ExtResource("4_jqrfj")
-lifetime = 4.0
-preprocess = 4.0
-process_material = SubResource("ParticleProcessMaterial_w5b1h")
-
-[node name="Signs" type="Node2D" parent="." unique_id=1020895942]
-
-[node name="Sign" parent="Signs" unique_id=1279153123 instance=ExtResource("24_xkoe6")]
-position = Vector2(11651, -994)
-texture = ExtResource("25_q6f27")
-type = "Paper"
-
-[node name="Sign2" parent="Signs" unique_id=302943858 instance=ExtResource("24_xkoe6")]
-position = Vector2(11380, -994)
-texture = ExtResource("26_582xk")
-type = "Rock"
-
-[node name="Sign3" parent="Signs" unique_id=154582253 instance=ExtResource("24_xkoe6")]
-position = Vector2(11103, -1018)
-texture = ExtResource("27_mavxr")
-type = "Scissors"
 
 [node name="Items" type="Node2D" parent="." unique_id=612216243]
 
@@ -362,36 +456,52 @@ position = Vector2(7741, -512)
 texture = ExtResource("28_cxrnp")
 type = "Heart"
 
-[node name="Spikes" type="Node2D" parent="." unique_id=1586884408]
+[node name="Signs" type="Node2D" parent="Items" unique_id=1020895942]
 
-[node name="Spike1" parent="Spikes" unique_id=663799335 instance=ExtResource("29_s13le")]
-position = Vector2(9479, -21)
-size = Vector2(3000, 10)
-damage = 1
+[node name="Sign" parent="Items/Signs" unique_id=1279153123 instance=ExtResource("24_xkoe6")]
+position = Vector2(11202, -1452)
+texture = ExtResource("25_q6f27")
+type = "Paper"
 
-[node name="Spikes" type="Sprite2D" parent="Spikes/Spike1" unique_id=1285771486]
-position = Vector2(16, 3)
-texture = ExtResource("30_60bo7")
+[node name="Sign2" parent="Items/Signs" unique_id=302943858 instance=ExtResource("24_xkoe6")]
+position = Vector2(11339, -1308)
+texture = ExtResource("26_582xk")
+type = "Rock"
 
-[node name="Checkpoint" parent="." unique_id=1985326187 instance=ExtResource("30_iw8la")]
+[node name="Sign3" parent="Items/Signs" unique_id=154582253 instance=ExtResource("24_xkoe6")]
+position = Vector2(11112, -1257)
+texture = ExtResource("27_mavxr")
+type = "Scissors"
+
+[node name="Checkpoints" type="Node2D" parent="." unique_id=649163966]
 position = Vector2(8200, -498)
+
+[node name="Checkpoint" parent="Checkpoints" unique_id=1985326187 instance=ExtResource("30_iw8la")]
 size = Vector2(50, 200)
 
-[node name="Wind1" type="Sprite2D" parent="." unique_id=882544805]
+[node name="Checkpoint2" parent="Checkpoints" unique_id=471810511 instance=ExtResource("30_iw8la")]
+position = Vector2(2388, 160)
+size = Vector2(50, 300)
+
+[node name="Checkpoint3" parent="Checkpoints" unique_id=1759168385 instance=ExtResource("30_iw8la")]
+position = Vector2(-7242, 1357)
+size = Vector2(50, 300)
+
+[node name="Temp" type="Node2D" parent="." unique_id=196247025]
+
+[node name="Restart" type="Sprite2D" parent="Temp" unique_id=882544805]
 position = Vector2(1208, 797)
 texture = ExtResource("34_f7pya")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=196247025]
+[node name="StaticBody2D" type="StaticBody2D" parent="Temp" unique_id=1326451064]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=1326451064]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1785658735]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Temp/StaticBody2D" unique_id=1785658735]
 position = Vector2(754, 1028)
 shape = SubResource("RectangleShape2D_0sjt3")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Node2D" unique_id=1711031035]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Temp" unique_id=1711031035]
 position = Vector2(6806, -729)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D2" unique_id=311239133]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Temp/StaticBody2D2" unique_id=311239133]
 position = Vector2(754, 1028)
 shape = SubResource("RectangleShape2D_0sjt3")

@@ -20,4 +20,4 @@ func create_area():
 func _body_entered(body: Node2D):
 	if body.is_in_group("Player"):
 		#print(str(position - body.position) + str(body.get_parent().position))
-		body.set_checkpoint(position - body.get_parent().position)
+		body.set_checkpoint(body.position)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iwpc44md8f6a"
-path="res://.godot/imported/3 — копия.png-47c460bd6d02c6815e34f7e15372a1d8.ctex"
+uid="uid://dpuxhvlmw67cb"
+path="res://.godot/imported/4.png-e328c170d3b820d21e00aa377a2cad60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Environment/Crest/Platforms/Small/3 — копия.png"
-dest_files=["res://.godot/imported/3 — копия.png-47c460bd6d02c6815e34f7e15372a1d8.ctex"]
+source_file="res://Resources/Textures/Environment/Crest/Platforms/Big/4.png"
+dest_files=["res://.godot/imported/4.png-e328c170d3b820d21e00aa377a2cad60.ctex"]
 
 [params]
 

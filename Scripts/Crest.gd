@@ -1,9 +1,11 @@
 extends Node2D
 
 @onready var particleGenFollowNode = $Hero.get_child(4)
-@onready var particleNode = $Particles
-@onready var particle2Node = $Particles2
+@onready var particleNode = $Particles/ForeGround
+@onready var particle2Node = $Particles/BackGround
 var sinTimer = 0
+
+
 
 func particle_follow() -> void:
 	particleNode.position = particleGenFollowNode.position + Vector2(-900, -540) + $Hero.position

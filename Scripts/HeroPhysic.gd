@@ -90,6 +90,7 @@ func enter_vertical_state() -> void:
 	changePoseTimer = changePoseTimerMax
 	match currentVerticalState:
 		verticalState.JUMP:
+			print(position)
 			canContinueJump = true
 			jumpContinueTimer = jumpContinueTimerMax
 		verticalState.GROUND:
@@ -133,7 +134,7 @@ func start_playing_stable_anim() -> void:
 
 #region Функции чекпоинтов
 func set_checkpoint(newCheckpoint: Vector2):
-	checkpoint = newCheckpoint
+	checkpoint = newCheckpoint + Vector2(0, -75)
 
 func go_to_checkpoint():
 	velocity = Vector2.ZERO
@@ -247,7 +248,6 @@ func update_state(delta: float) -> void:
 			if direction != 1:
 				set_horizontal_state(horizontalState.CENTER)
 
-
 func update_death_state(delta: float) -> void:
 	$"../HeroAnimation".play("DEATH_" + horizontalState.keys()[currentHorizontalState])
 	if !is_on_floor():
@@ -268,8 +268,6 @@ func _process(_delta: float) -> void:
 
 func _on_coyote_area_body_entered(_body: Node2D) -> void:
 	canAutoJump = true
-	pass # Replace with function body.
 
 func _on_coyote_area_body_exited(_body: Node2D) -> void:
 	canAutoJump = false
-	pass # Replace with function body.

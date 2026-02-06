@@ -7,13 +7,12 @@ var settlePos := Vector2(0, 0)
 @export var sideOffset: float
 @export var lowerSide: float
 @export var mass: int
-enum types {FLOATING_STONE, STONE, FLAT}
+enum types {FLOATING_STONE, STONE}
 enum hitboxTypes {BOX, TRAPECIA, SPECIFIC}
 @export var type: types
 @export var hitboxType: hitboxTypes
 @onready var sprite = $Sprite
-@onready var hitboxCollision = $Hitbox
-@onready var settleArea = $Settle/SettleArea
+
 
 
 @export var texture: Texture2D
