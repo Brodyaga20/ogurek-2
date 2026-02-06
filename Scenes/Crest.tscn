@@ -25,8 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://bbmmblh2eqtyj" path="res://Resources/Textures/Environment/Crest/Platforms/Small/12.png" id="24_2covj"]
 [ext_resource type="Texture2D" uid="uid://b6povhybi063p" path="res://Resources/Textures/Environment/Crest/Platforms/Small/13.png" id="24_fhwdh"]
 [ext_resource type="PackedScene" uid="uid://cxmxmmlohrq2p" path="res://Scenes/Collectible.tscn" id="24_xkoe6"]
+[ext_resource type="Texture2D" uid="uid://dxkks5ywstkao" path="res://Resources/Textures/Environment/Crest/Platforms/Small/14.png" id="25_fhwdh"]
 [ext_resource type="Texture2D" uid="uid://cvgxdn58u0pjs" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0000.png" id="25_q6f27"]
+[ext_resource type="Texture2D" uid="uid://b5fjj1luo2p5t" path="res://Resources/Textures/Environment/Crest/Platforms/Small/16.png" id="26_2covj"]
 [ext_resource type="Texture2D" uid="uid://cepand2ubomvn" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0014.png" id="26_582xk"]
+[ext_resource type="Texture2D" uid="uid://5ba5rvgelh1u" path="res://Resources/Textures/Environment/Crest/Platforms/Small/17.png" id="27_gp8k1"]
 [ext_resource type="Texture2D" uid="uid://b7ekoma0fmfri" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0000.png" id="27_mavxr"]
 [ext_resource type="Texture2D" uid="uid://d0ntdpln0ogtv" path="res://Resources/Textures/Environment/Crest/Items/Heart.png" id="28_cxrnp"]
 [ext_resource type="PackedScene" uid="uid://f0wcl3ix8nvw" path="res://Scenes/Trap.tscn" id="29_s13le"]
@@ -144,7 +147,7 @@ position = Vector2(0, -454)
 polygon = PackedVector2Array(-1139, -531, -1022, -458, -904, -246, -737, -150, -735, -124, -751, -30, -746, 0, -710, 43, -954, 547, -1525, 1481, 1026, 1493, 1001, 649, 926, 291, 866, 155, 838, 30, 732, 44, 725, 10, 717, -29, 716, -89, 722, -120, 739, -157, 761, -224, 756, -297, 693, -511, 120, -523, -563, -519)
 
 [node name="BigCliff3" parent="Cliffs/BigCliffs" unique_id=1822923182 instance=ExtResource("8_gp8k1")]
-position = Vector2(7981, -45)
+position = Vector2(7745, -295)
 upperOffset = 12.0
 sideOffset = 12.0
 lowerSide = 150.0
@@ -239,7 +242,7 @@ texture = ExtResource("23_fhwdh")
 
 [node name="Cliff10" parent="Cliffs/SmallCliffs/Lift2" unique_id=1151401254 instance=ExtResource("8_gp8k1")]
 position = Vector2(6287, 155)
-upperOffset = 23.0
+upperOffset = 18.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -248,15 +251,15 @@ texture = ExtResource("24_2covj")
 
 [node name="Cliff11" parent="Cliffs/SmallCliffs/Lift2" unique_id=117053849 instance=ExtResource("8_gp8k1")]
 position = Vector2(5833, 37)
-upperOffset = 12.0
+upperOffset = 20.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 20
 hitboxType = 1
-texture = ExtResource("24_2covj")
+texture = ExtResource("25_fhwdh")
 
 [node name="Cliff12" parent="Cliffs/SmallCliffs/Lift2" unique_id=1812844161 instance=ExtResource("8_gp8k1")]
-position = Vector2(5009, -73)
+position = Vector2(5071, -73)
 upperOffset = 30.0
 sideOffset = 12.0
 lowerSide = 150.0
@@ -265,22 +268,22 @@ hitboxType = 1
 texture = ExtResource("24_fhwdh")
 
 [node name="Cliff13" parent="Cliffs/SmallCliffs/Lift2" unique_id=1402599630 instance=ExtResource("8_gp8k1")]
-position = Vector2(5817, -272)
-upperOffset = 12.0
+position = Vector2(5888, -274)
+upperOffset = 21.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 10
 hitboxType = 1
-texture = ExtResource("16_04dqc")
+texture = ExtResource("26_2covj")
 
 [node name="Cliff14" parent="Cliffs/SmallCliffs/Lift2" unique_id=1257752857 instance=ExtResource("8_gp8k1")]
-position = Vector2(6361, -317)
-upperOffset = 12.0
+position = Vector2(6432, -327)
+upperOffset = 20.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
 hitboxType = 1
-texture = ExtResource("14_51k1f")
+texture = ExtResource("27_gp8k1")
 
 [node name="Cliff15" parent="Cliffs/SmallCliffs/Lift2" unique_id=654341828 instance=ExtResource("8_gp8k1")]
 position = Vector2(6883, -151)
@@ -303,7 +306,7 @@ texture = ExtResource("14_51k1f")
 [node name="SpikeSegment" type="Node2D" parent="Cliffs/SmallCliffs" unique_id=600957706]
 
 [node name="Hero" parent="." unique_id=1801713874 instance=ExtResource("23_bfipr")]
-position = Vector2(-8, -480)
+position = Vector2(6108, -462)
 
 [node name="Particles2" type="Node2D" parent="." unique_id=375667545]
 

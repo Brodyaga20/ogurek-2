@@ -1,49 +1,62 @@
 extends CharacterBody2D
-#region variables
-var acceleration := 400
-var accelerationAir := 200
+
 var noGameplayRandom := randi()
 var gameplayPandom := randi()
-var checkpoint := Vector2(0, 0)
-var autoJump = false
-var canAutoJump = false
-var mustAutoJump = false
+
+#region Физические константы
+const acceleration := 400
+const accelerationAir := 200
 
 const maxSpeed := 770
 const maxSpeedAir := 810
 const minSpeed := 100
 
-var signNow = ""
 const gravAcc := 5000
 const dashGravAcc := 3000
 const fastFallAcc := 10000
 const slowFallAcc := 20
 
-const secondJumpSpeed := 1150
-const jumpSpeed := 1300
+const jumpSpeed := 900
 
 const dashSpeed := 2000
-
-var dashTimer : float = 0
-var hangTimer : float = 0
-var coyoteTimer : float = 0
 
 const airFriction := 0.84
 const groundFriction := 0.81
 const dashFriction := 0.99
 
+#endregion
+
+var signNow = ""
+
+#region Таймеры
+var dashTimer : float = 0
+var hangTimer : float = 0
+var coyoteTimer : float = 0
+var jumpContinueTimer : float = 0
+var changePoseTimer : float = 0
+var stopFallingTimer := 0
+#endregion
+
+#region Переменные положения в пространстве
+var checkpoint := Vector2(0, 0)
 var direction := 0
 var lastDirection := 0
+#endregion
 
+#region Переменные возможности действий
+var autoJump = false
+var canAutoJump = false
+var mustAutoJump = false
 var canDJump = false
 var canDash = true
+var canContinueJump = false
+#endregion
 
 var currentTransAnimation := ""
 var currentStableAnimation := ""
 
 var stopMove := false
-var changePoseTimer : float = 0
-var stopFallingTimer := 0
+
 enum verticalState {GROUND, WALK, JUMP, FALL, DASH, HANG, FASTFALL, DEATH}
 enum horizontalState {CENTER, RIGHT, LEFT}
 var currentVerticalState : verticalState
@@ -72,8 +85,10 @@ func enter_vertical_state() -> void:
 	$"../HeroAnimation".play(currentTransAnimation)
 	changePoseTimer = 0.1
 	match currentVerticalState:
+		verticalState.JUMP:
+			canContinueJump = true
+			jumpContinueTimer = 0.12
 		verticalState.GROUND:
-			print(autoJump)
 			if autoJump:
 				set_vertical_state(verticalState.JUMP)
 				velocity.y = -jumpSpeed
@@ -147,11 +162,19 @@ func update_state(delta: float) -> void:
 			elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
 				set_vertical_state(verticalState.DASH)
 		verticalState.JUMP:
+			if jumpContinueTimer > 0:
+				jumpContinueTimer -= delta
 			velocity.x += direction * accelerationAir
 			velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
 			velocity.y += gravAcc * delta
 			if velocity.y > 0:
 				set_vertical_state(verticalState.FALL)
+			elif Input.is_action_just_released("Jump"):
+				canContinueJump = false
+				
+			elif jumpContinueTimer > 0 && Input.is_action_pressed("Jump") && canContinueJump:
+				
+				velocity.y = -jumpSpeed
 			elif Input.is_action_just_pressed("Jump") && signNow == "Paper" && canDJump:
 				velocity.y = -jumpSpeed
 				canDJump = false
@@ -179,7 +202,6 @@ func update_state(delta: float) -> void:
 			elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
 				set_vertical_state(verticalState.HANG)
 			elif Input.is_action_just_pressed("Jump") && canAutoJump:
-				print("yeee")
 				autoJump = true
 				canAutoJump = false
 			if !direction:

@@ -57,7 +57,7 @@ func change_sign(newSign: String):
 
 func play_sign_change_anim():
 	signAnimationName = signPrevious + "-" + signNow
-	$SignChange.play(signAnimationName)
+	$SignAnimation.play(signAnimationName)
 
 func take_damage(amount: int, isTrap: bool):
 	if amount >= health:

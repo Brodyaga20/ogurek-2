@@ -998,19 +998,57 @@ _data = {
 &"RESET": SubResource("Animation_rqnp8")
 }
 
+[sub_resource type="Animation" id="Animation_htclj"]
+resource_name = "Appear"
+step = 0.06666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/HUD/Bar/Bar:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_o0b4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/HUD/Bar/Bar:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("197_gm4nh")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_55o2c"]
+_data = {
+&"Appear": SubResource("Animation_htclj"),
+&"RESET": SubResource("Animation_o0b4j")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gp4og"]
-size = Vector2(16, 153)
+size = Vector2(16, 95)
 
 [node name="Hero" type="Node2D" unique_id=1192400866]
 script = ExtResource("1_cfflp")
 
-[node name="SignChange" type="AnimationPlayer" parent="." unique_id=346192311]
+[node name="SignAnimation" type="AnimationPlayer" parent="." unique_id=346192311]
 libraries/ = SubResource("AnimationLibrary_0qxue")
 
 [node name="HeroAnimation" type="AnimationPlayer" parent="." unique_id=303777695]
 libraries/ = SubResource("AnimationLibrary_cf17c")
 
-[node name="HPChange" type="AnimationPlayer" parent="." unique_id=985684442]
+[node name="HUDAppearing" type="AnimationPlayer" parent="." unique_id=1991795632]
+libraries/ = SubResource("AnimationLibrary_55o2c")
 
 [node name="Body" type="CharacterBody2D" parent="." unique_id=587934029 groups=["Player"]]
 position = Vector2(960, 540)
@@ -1028,7 +1066,7 @@ polygon = PackedVector2Array(8, 36, 27, 100, 43, 100, 60, 35, 60, -29, 51, -61, 
 [node name="CoyoteArea" type="Area2D" parent="Body" unique_id=796600535]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CoyoteArea" unique_id=1933520157]
-position = Vector2(-3, 155.5)
+position = Vector2(-3, 126.5)
 shape = SubResource("RectangleShape2D_gp4og")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=829295455]
