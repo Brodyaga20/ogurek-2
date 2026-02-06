@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwfuybc8bqd2n"
-path="res://.godot/imported/EmptyBlock — копия.png-0fbcbcfea06ce9dca261770f43288503.ctex"
+uid="uid://cfppiqmxp615p"
+path="res://.godot/imported/EmptyBlock2.png-0efd87c77d725aacc2923a1ac3815de9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Environment/EmptyBlock — копия.png"
-dest_files=["res://.godot/imported/EmptyBlock — копия.png-0fbcbcfea06ce9dca261770f43288503.ctex"]
+source_file="res://Resources/Textures/Environment/EmptyBlock2.png"
+dest_files=["res://.godot/imported/EmptyBlock2.png-0efd87c77d725aacc2923a1ac3815de9.ctex"]
 
 [params]
 

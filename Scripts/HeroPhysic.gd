@@ -26,15 +26,19 @@ const dashFriction := 0.99
 
 #endregion
 
-var signNow = ""
-
 #region Таймеры
 var dashTimer : float = 0
+const dashTimerMax = 0.2
 var hangTimer : float = 0
+const hangTimerMax = 0.2
 var coyoteTimer : float = 0
+const coyoteTimerMax = 0.06
 var jumpContinueTimer : float = 0
+const jumpContinueTimerMax = 0.12
 var changePoseTimer : float = 0
+const changePoseTimerMax = 0.1
 var stopFallingTimer := 0
+const stopFallingTimerMax = 0
 #endregion
 
 #region Переменные положения в пространстве
@@ -52,19 +56,19 @@ var canDash = true
 var canContinueJump = false
 #endregion
 
+var signNow = ""
 var currentTransAnimation := ""
 var currentStableAnimation := ""
 
-var stopMove := false
-
+#region Переменные состояния
 enum verticalState {GROUND, WALK, JUMP, FALL, DASH, HANG, FASTFALL, DEATH}
 enum horizontalState {CENTER, RIGHT, LEFT}
 var currentVerticalState : verticalState
 var currentHorizontalState : horizontalState
 var currentGlobalMovementState := ""
-
 #endregion
 
+#region Функции смены состояний
 func set_vertical_state(new_state: verticalState) -> void:
 	currentTransAnimation = verticalState.keys()[currentVerticalState] + "_" + verticalState.keys()[new_state] + "_" + horizontalState.keys()[currentHorizontalState]
 	if currentVerticalState == new_state:
@@ -83,11 +87,11 @@ func set_horizontal_state(new_state: horizontalState) -> void:
 
 func enter_vertical_state() -> void:
 	$"../HeroAnimation".play(currentTransAnimation)
-	changePoseTimer = 0.1
+	changePoseTimer = changePoseTimerMax
 	match currentVerticalState:
 		verticalState.JUMP:
 			canContinueJump = true
-			jumpContinueTimer = 0.12
+			jumpContinueTimer = jumpContinueTimerMax
 		verticalState.GROUND:
 			if autoJump:
 				set_vertical_state(verticalState.JUMP)
@@ -100,13 +104,13 @@ func enter_vertical_state() -> void:
 			canDash = false
 			velocity.y = 0
 			velocity.x = dashSpeed * lastDirection
-			dashTimer = 0.2
+			dashTimer = dashTimerMax
 			if lastDirection == 1:
 				set_horizontal_state(horizontalState.RIGHT)
 			elif lastDirection == -1:
 				set_horizontal_state(horizontalState.LEFT)
 		verticalState.HANG:
-			hangTimer = 0.2
+			hangTimer = hangTimerMax
 	return
 
 func exit_vertical_state() -> void:
@@ -115,29 +119,31 @@ func exit_vertical_state() -> void:
 func enter_horizontal_state() -> void:
 	$"../HeroAnimation".play(currentTransAnimation)
 	if currentVerticalState == verticalState.GROUND:
-		changePoseTimer = 0.1
+		changePoseTimer = changePoseTimerMax
 	else:
 		changePoseTimer = -1
 	return
 
 func exit_horizontal_state() -> void:
 	return
+#endregion
 
 func start_playing_stable_anim() -> void:
 	$"../HeroAnimation".play(currentStableAnimation)
 
+#region Функции чекпоинтов
 func set_checkpoint(newCheckpoint: Vector2):
 	checkpoint = newCheckpoint
 
 func go_to_checkpoint():
 	velocity = Vector2.ZERO
 	position = checkpoint
+#endregion
 
 func update_state(delta: float) -> void:
+	currentGlobalMovementState = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
 	if coyoteTimer > 0:
 		coyoteTimer -= delta
-	
-	currentGlobalMovementState = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
 	if changePoseTimer != 0:
 		changePoseTimer -= delta
 	if changePoseTimer < 0 && changePoseTimer > -1:
@@ -157,7 +163,7 @@ func update_state(delta: float) -> void:
 			elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
 				set_vertical_state(verticalState.DASH)
 			elif !is_on_floor():
-				coyoteTimer = 0.06
+				coyoteTimer = coyoteTimerMax
 				set_vertical_state(verticalState.FALL)
 			elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
 				set_vertical_state(verticalState.DASH)
@@ -240,7 +246,7 @@ func update_state(delta: float) -> void:
 		horizontalState.RIGHT:
 			if direction != 1:
 				set_horizontal_state(horizontalState.CENTER)
-	pass
+
 
 func update_death_state(delta: float) -> void:
 	$"../HeroAnimation".play("DEATH_" + horizontalState.keys()[currentHorizontalState])
@@ -263,7 +269,6 @@ func _process(_delta: float) -> void:
 func _on_coyote_area_body_entered(_body: Node2D) -> void:
 	canAutoJump = true
 	pass # Replace with function body.
-
 
 func _on_coyote_area_body_exited(_body: Node2D) -> void:
 	canAutoJump = false

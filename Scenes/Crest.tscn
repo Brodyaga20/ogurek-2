@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cepand2ubomvn" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0014.png" id="26_582xk"]
 [ext_resource type="Texture2D" uid="uid://5ba5rvgelh1u" path="res://Resources/Textures/Environment/Crest/Platforms/Small/17.png" id="27_gp8k1"]
 [ext_resource type="Texture2D" uid="uid://b7ekoma0fmfri" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0000.png" id="27_mavxr"]
+[ext_resource type="Texture2D" uid="uid://cxu6e13uk2plu" path="res://Resources/Textures/Environment/Crest/Platforms/Small/15.png" id="28_0sjt3"]
 [ext_resource type="Texture2D" uid="uid://d0ntdpln0ogtv" path="res://Resources/Textures/Environment/Crest/Items/Heart.png" id="28_cxrnp"]
 [ext_resource type="PackedScene" uid="uid://f0wcl3ix8nvw" path="res://Scenes/Trap.tscn" id="29_s13le"]
 [ext_resource type="Texture2D" uid="uid://rqcqlpblagro" path="res://Resources/Textures/Environment/Crest/Traps/Spikes.png" id="30_60bo7"]
@@ -49,6 +50,9 @@ initial_velocity_max = -800.0
 gravity = Vector3(0, 0, 0)
 scale_over_velocity_min = 1.0
 scale_over_velocity_max = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sjt3"]
+size = Vector2(89, 384)
 
 [node name="Node2D" type="Node2D" unique_id=287013719]
 script = ExtResource("1_rheof")
@@ -301,12 +305,12 @@ sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
 hitboxType = 1
-texture = ExtResource("14_51k1f")
+texture = ExtResource("28_0sjt3")
 
 [node name="SpikeSegment" type="Node2D" parent="Cliffs/SmallCliffs" unique_id=600957706]
 
 [node name="Hero" parent="." unique_id=1801713874 instance=ExtResource("23_bfipr")]
-position = Vector2(6108, -462)
+position = Vector2(6598, -1391)
 
 [node name="Particles2" type="Node2D" parent="." unique_id=375667545]
 
@@ -376,3 +380,18 @@ size = Vector2(50, 200)
 [node name="Wind1" type="Sprite2D" parent="." unique_id=882544805]
 position = Vector2(1208, 797)
 texture = ExtResource("34_f7pya")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=196247025]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=1326451064]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1785658735]
+position = Vector2(754, 1028)
+shape = SubResource("RectangleShape2D_0sjt3")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Node2D" unique_id=1711031035]
+position = Vector2(6806, -729)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D2" unique_id=311239133]
+position = Vector2(754, 1028)
+shape = SubResource("RectangleShape2D_0sjt3")
