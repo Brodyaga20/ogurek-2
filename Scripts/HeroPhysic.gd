@@ -152,13 +152,19 @@ func set_current_state():
 func set_direction():
 	direction = int(Input.is_action_pressed("Right")) -  int(Input.is_action_pressed("Left"))
 
-func horizontal_movement(delta:float, type: String):
+func update_free_movement(delta:float, type: String):
 	velocity.x += direction * acceleration
 	velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
 	if type == "ground":
 		velocity.x *= groundFriction
 	elif type == "air":
 		velocity.x *= airFriction
+		velocity.y += gravAcc * delta
+	elif type == "stop":
+		velocity = Vector2.ZERO
+	elif type == "fastfall":
+		velocity.x = 0
+		velocity.y += fastFallAcc * delta
 
 func update_vertical_state(delta:float):
 	match currentVerticalState:
@@ -176,7 +182,7 @@ func update_vertical_state(delta:float):
 			update_vertical_state_fastfall(delta)
 
 func update_vertical_state_ground(delta: float):
-	horizontal_movement(delta, "ground")
+	update_free_movement(delta, "ground")
 	if Input.is_action_just_pressed("Jump"):
 		set_vertical_state(verticalState.JUMP)
 		velocity.y = -jumpSpeed
@@ -191,9 +197,7 @@ func update_vertical_state_ground(delta: float):
 func update_vertical_state_jump(delta: float):
 	if jumpContinueTimer > 0:
 		jumpContinueTimer -= delta
-	velocity.x += direction * accelerationAir
-	velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
-	velocity.y += gravAcc * delta
+	update_free_movement(delta, "air")
 	if velocity.y > 0:
 		set_vertical_state(verticalState.FALL)
 	elif Input.is_action_just_released("Jump"):
@@ -213,9 +217,7 @@ func update_vertical_state_jump(delta: float):
 		lastDirection = direction
 
 func update_vertical_state_fall(delta: float):
-	velocity.x += direction * accelerationAir
-	velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
-	velocity.y += gravAcc * delta
+	update_free_movement(delta, "air")
 	if is_on_floor():
 		set_vertical_state(verticalState.GROUND)
 	elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
@@ -235,8 +237,7 @@ func update_vertical_state_fall(delta: float):
 		lastDirection = direction
 
 func update_vertical_state_hang(delta: float):
-	velocity.x = 0
-	velocity.y = 0
+	update_free_movement(delta, "stop")
 	hangTimer -= delta
 	if hangTimer <= 0:
 		hangTimer = 0
@@ -252,8 +253,7 @@ func update_vertical_state_dash(delta: float):
 		set_vertical_state(verticalState.HANG)
 
 func update_vertical_state_fastfall(delta: float):
-	velocity.y += fastFallAcc * delta
-	velocity.x = 0
+	update_free_movement(delta, "fastfall")
 	if is_on_floor():
 		set_vertical_state(verticalState.GROUND)
 

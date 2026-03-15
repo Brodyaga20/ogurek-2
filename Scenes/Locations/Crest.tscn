@@ -520,6 +520,10 @@ hitboxType = 1
 texture = ExtResource("23_fhwdh")
 
 [node name="Hero" parent="." unique_id=1801713874 instance=ExtResource("23_bfipr")]
+position = Vector2(854, 461)
+
+[node name="Camera2D" type="Camera2D" parent="Hero" unique_id=1653431737]
+position = Vector2(455, 383)
 
 [node name="Items" type="Node2D" parent="." unique_id=612216243]
 
@@ -574,4 +578,5 @@ position = Vector2(754, 1028)
 shape = SubResource("RectangleShape2D_0sjt3")
 
 [node name="Transition" parent="." unique_id=654051637 instance=ExtResource("39_w6xqv")]
-position = Vector2(13488, -1448)
+position = Vector2(13369, 2221)
+finalLoc = "\"res://Scenes/Locations/Catacombs.tscn\""

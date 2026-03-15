@@ -197,7 +197,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -213,7 +213,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -229,7 +229,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -246,7 +246,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -263,7 +263,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -278,7 +278,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -295,7 +295,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -312,7 +312,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -329,7 +329,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -346,7 +346,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Sign/Sign:texture")
+tracks/0/path = NodePath("HUD/Sign/Sign:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -995,7 +995,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D/HUD/Bar/Bar:texture")
+tracks/0/path = NodePath("HUD/Bar/Bar:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1045,68 +1045,64 @@ polygon = PackedVector2Array(8, 36, 27, 100, 43, 100, 60, 35, 60, -29, 51, -61, 
 position = Vector2(-3, 127)
 shape = SubResource("RectangleShape2D_gp4og")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=829295455]
-position = Vector2(957, 527)
-position_smoothing_speed = 1.0
-
-[node name="HUD" type="Node2D" parent="Camera2D" unique_id=1059420288]
+[node name="HUD" type="Node2D" parent="." unique_id=1059420288]
 z_index = 10
-position = Vector2(-12, 3)
+position = Vector2(945, 530)
 
-[node name="Bar" type="Node2D" parent="Camera2D/HUD" unique_id=1726626402]
+[node name="Bar" type="Node2D" parent="HUD" unique_id=1726626402]
 position = Vector2(-109, 170)
 
-[node name="Bar" type="Sprite2D" parent="Camera2D/HUD/Bar" unique_id=2104727479]
+[node name="Bar" type="Sprite2D" parent="HUD/Bar" unique_id=2104727479]
 texture_filter = 1
 position = Vector2(-622.5, -643.5)
 scale = Vector2(2, 2)
 texture = ExtResource("197_gm4nh")
 
-[node name="HP" type="Node2D" parent="Camera2D/HUD/Bar" unique_id=2125097327]
+[node name="HP" type="Node2D" parent="HUD/Bar" unique_id=2125097327]
 texture_filter = 1
 
-[node name="HP1" type="Node2D" parent="Camera2D/HUD/Bar/HP" unique_id=1221101297]
+[node name="HP1" type="Node2D" parent="HUD/Bar/HP" unique_id=1221101297]
 texture_filter = 1
 position = Vector2(-672.5, -660.5)
 
-[node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP1" unique_id=953178376]
+[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP1" unique_id=953178376]
 texture_filter = 1
 texture = ExtResource("198_gp4og")
 hframes = 2
 
-[node name="HP2" type="Node2D" parent="Camera2D/HUD/Bar/HP" unique_id=636378328]
+[node name="HP2" type="Node2D" parent="HUD/Bar/HP" unique_id=636378328]
 position = Vector2(-560.5, -660.5)
 
-[node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP2" unique_id=1484924724]
+[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP2" unique_id=1484924724]
 texture_filter = 1
 texture = ExtResource("198_gp4og")
 hframes = 2
 
-[node name="HP3" type="Node2D" parent="Camera2D/HUD/Bar/HP" unique_id=408731303]
+[node name="HP3" type="Node2D" parent="HUD/Bar/HP" unique_id=408731303]
 position = Vector2(-672.5, -624.5)
 
-[node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP3" unique_id=266708854]
+[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP3" unique_id=266708854]
 texture = ExtResource("198_gp4og")
 hframes = 2
 
-[node name="HP4" type="Node2D" parent="Camera2D/HUD/Bar/HP" unique_id=1259706370]
+[node name="HP4" type="Node2D" parent="HUD/Bar/HP" unique_id=1259706370]
 position = Vector2(-560.5, -624.5)
 
-[node name="Sprite" type="Sprite2D" parent="Camera2D/HUD/Bar/HP/HP4" unique_id=2010290192]
+[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP4" unique_id=2010290192]
 texture = ExtResource("198_gp4og")
 hframes = 2
 
-[node name="Sign" type="Node2D" parent="Camera2D/HUD" unique_id=1153885772]
+[node name="Sign" type="Node2D" parent="HUD" unique_id=1153885772]
 position = Vector2(24.5, -11.5)
 
-[node name="Plate" type="Sprite2D" parent="Camera2D/HUD/Sign" unique_id=1136067944]
+[node name="Plate" type="Sprite2D" parent="HUD/Sign" unique_id=1136067944]
 z_as_relative = false
 texture_filter = 1
 position = Vector2(-846.5, -643.5)
 scale = Vector2(2, 2)
 texture = ExtResource("47_sxtcv")
 
-[node name="Sign" type="Sprite2D" parent="Camera2D/HUD/Sign" unique_id=573412532]
+[node name="Sign" type="Sprite2D" parent="HUD/Sign" unique_id=573412532]
 texture_filter = 1
 position = Vector2(-846, -641)
 scale = Vector2(0.5, 0.5)

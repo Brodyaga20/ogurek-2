@@ -26,11 +26,11 @@ const barWithPlatePosition = Vector2(-5, 205)
 const HPtype = {"Empty": 0, "CommonFull": 1}
 
 #region onready
-@onready var HP = {1: $Camera2D/HUD/Bar/HP/HP1/Sprite, 2: $Camera2D/HUD/Bar/HP/HP2/Sprite, 3: $Camera2D/HUD/Bar/HP/HP3/Sprite, 4: $Camera2D/HUD/Bar/HP/HP4/Sprite}
-@onready var HUD = $Camera2D/HUD
-@onready var signPlate = $Camera2D/HUD/Sign
-@onready var signSprite = $Camera2D/HUD/Sign/Sign
-@onready var bar = $Camera2D/HUD/Bar
+@onready var HP = {1: $HUD/Bar/HP/HP1/Sprite, 2: $HUD/Bar/HP/HP2/Sprite, 3: $HUD/Bar/HP/HP3/Sprite, 4: $HUD/Bar/HP/HP4/Sprite}
+@onready var HUD = $HUD
+@onready var signPlate = $HUD/Sign
+@onready var signSprite = $HUD/Sign/Sign
+@onready var bar = $HUD/Bar
 #endregion
 
 func save_game():
@@ -90,14 +90,10 @@ func take_damage(amount: int, isTrap: bool):
 func die() -> void:
 	alive = false
 
-func set_camera_position() -> void:
-	cameraSpeed = ($Body.position - $Camera2D.position)/55
-	distanceCameraToHero = $Camera2D.position.distance_to($Body.position)
-	if distanceCameraToHero > 5:
-		$Camera2D.position = lerp($Camera2D.position, $Camera2D.position+cameraSpeed, 2)
+
 
 func _physics_process(_delta: float) -> void:
-	set_camera_position()
+	pass
 
 func _process(_delta: float) -> void:
 	for i in range(GlobalVars.health):
