@@ -1054,7 +1054,7 @@ z_index = 10
 position = Vector2(-12, 3)
 
 [node name="Bar" type="Node2D" parent="Camera2D/HUD" unique_id=1726626402]
-position = Vector2(16.5, -10.5)
+position = Vector2(-109, 170)
 
 [node name="Bar" type="Sprite2D" parent="Camera2D/HUD/Bar" unique_id=2104727479]
 texture_filter = 1

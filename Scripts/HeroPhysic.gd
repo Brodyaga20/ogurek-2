@@ -68,6 +68,12 @@ var currentHorizontalState : horizontalState
 var currentGlobalMovementState := ""
 #endregion
 
+func _physics_process(delta: float) -> void:
+	update_state(delta)
+
+func _process(_delta: float) -> void:
+	signNow = get_parent().signNow
+
 #region Функции смены состояний
 func set_vertical_state(new_state: verticalState) -> void:
 	currentTransAnimation = verticalState.keys()[currentVerticalState] + "_" + verticalState.keys()[new_state] + "_" + horizontalState.keys()[currentHorizontalState]
@@ -140,130 +146,167 @@ func go_to_checkpoint():
 	position = checkpoint
 #endregion
 
-func update_state(delta: float) -> void:
+func set_current_state():
 	currentGlobalMovementState = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
-	if coyoteTimer > 0:
-		coyoteTimer -= delta
+
+func set_direction():
+	direction = int(Input.is_action_pressed("Right")) -  int(Input.is_action_pressed("Left"))
+
+func horizontal_movement(delta:float, type: String):
+	velocity.x += direction * acceleration
+	velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
+	if type == "ground":
+		velocity.x *= groundFriction
+	elif type == "air":
+		velocity.x *= airFriction
+
+func update_vertical_state(delta:float):
+	match currentVerticalState:
+		verticalState.GROUND:
+			update_vertical_state_ground(delta)
+		verticalState.JUMP:
+			update_vertical_state_jump(delta)
+		verticalState.FALL:
+			update_vertical_state_fall(delta)
+		verticalState.DASH:
+			update_vertical_state_dash(delta)
+		verticalState.HANG:
+			update_vertical_state_hang(delta)
+		verticalState.FASTFALL:
+			update_vertical_state_fastfall(delta)
+
+func update_vertical_state_ground(delta: float):
+	horizontal_movement(delta, "ground")
+	if Input.is_action_just_pressed("Jump"):
+		set_vertical_state(verticalState.JUMP)
+		velocity.y = -jumpSpeed
+	elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
+		set_vertical_state(verticalState.DASH)
+	elif !is_on_floor():
+		coyoteTimer = coyoteTimerMax
+		set_vertical_state(verticalState.FALL)
+	elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
+		set_vertical_state(verticalState.DASH)
+
+func update_vertical_state_jump(delta: float):
+	if jumpContinueTimer > 0:
+		jumpContinueTimer -= delta
+	velocity.x += direction * accelerationAir
+	velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
+	velocity.y += gravAcc * delta
+	if velocity.y > 0:
+		set_vertical_state(verticalState.FALL)
+	elif Input.is_action_just_released("Jump"):
+		canContinueJump = false
+	elif jumpContinueTimer > 0 && Input.is_action_pressed("Jump") && canContinueJump:
+		velocity.y = -jumpSpeed
+	elif Input.is_action_just_pressed("Jump") && signNow == "Paper" && canDJump:
+		velocity.y = -jumpSpeed
+		canDJump = false
+	elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
+		set_vertical_state(verticalState.DASH)
+	elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
+		set_vertical_state(verticalState.HANG)
+	if !direction:
+		velocity.x *= airFriction
+	else:
+		lastDirection = direction
+
+func update_vertical_state_fall(delta: float):
+	velocity.x += direction * accelerationAir
+	velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
+	velocity.y += gravAcc * delta
+	if is_on_floor():
+		set_vertical_state(verticalState.GROUND)
+	elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
+		set_vertical_state(verticalState.DASH)
+	elif Input.is_action_just_pressed("Jump") && ((signNow == "Paper" && canDJump) || (coyoteTimer > 0)):
+		velocity.y = -jumpSpeed
+		canDJump = false
+		set_vertical_state(verticalState.JUMP)
+	elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
+		set_vertical_state(verticalState.HANG)
+	elif Input.is_action_just_pressed("Jump") && canAutoJump:
+		autoJump = true
+		canAutoJump = false
+	if !direction:
+		velocity.x *= airFriction
+	if direction:
+		lastDirection = direction
+
+func update_vertical_state_hang(delta: float):
+	velocity.x = 0
+	velocity.y = 0
+	hangTimer -= delta
+	if hangTimer <= 0:
+		hangTimer = 0
+		set_vertical_state(verticalState.FASTFALL)
+
+func update_vertical_state_dash(delta: float):
+	dashTimer -= delta
+	velocity.y += dashGravAcc * delta
+	if dashTimer <= 0:
+		dashTimer = 0
+		set_vertical_state(verticalState.FALL)
+	if Input.is_action_just_pressed("Jump") && signNow == "Rock":
+		set_vertical_state(verticalState.HANG)
+
+func update_vertical_state_fastfall(delta: float):
+	velocity.y += fastFallAcc * delta
+	velocity.x = 0
+	if is_on_floor():
+		set_vertical_state(verticalState.GROUND)
+
+func update_horizontal_state_center():
+	if direction == 1:
+		set_horizontal_state(horizontalState.RIGHT)
+	elif direction == -1:
+		set_horizontal_state(horizontalState.LEFT)
+
+func update_horizontal_state_left():
+	if direction != -1:
+		set_horizontal_state(horizontalState.CENTER)
+
+func update_horizontal_state_right():
+	if direction != 1:
+		set_horizontal_state(horizontalState.CENTER)
+
+func update_horizontal_state(delta: float):
+	match currentHorizontalState:
+		horizontalState.CENTER:
+			update_horizontal_state_center()
+		horizontalState.LEFT:
+			update_horizontal_state_left()
+		horizontalState.RIGHT:
+			update_horizontal_state_right()
+
+func update_animation(delta: float):
 	if changePoseTimer != 0:
 		changePoseTimer -= delta
 	if changePoseTimer < 0 && changePoseTimer > -1:
 		currentStableAnimation = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
 		start_playing_stable_anim()
 		changePoseTimer = 0
-	direction = int(Input.is_action_pressed("Right")) -  int(Input.is_action_pressed("Left"))
-	
-	match currentVerticalState:
-		verticalState.GROUND:
-			velocity.x += direction * acceleration
-			velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
-			velocity.x *= groundFriction
-			if Input.is_action_just_pressed("Jump"):
-				set_vertical_state(verticalState.JUMP)
-				velocity.y = -jumpSpeed
-			elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
-				set_vertical_state(verticalState.DASH)
-			elif !is_on_floor():
-				coyoteTimer = coyoteTimerMax
-				set_vertical_state(verticalState.FALL)
-			elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
-				set_vertical_state(verticalState.DASH)
-		verticalState.JUMP:
-			if jumpContinueTimer > 0:
-				jumpContinueTimer -= delta
-			velocity.x += direction * accelerationAir
-			velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
-			velocity.y += gravAcc * delta
-			if velocity.y > 0:
-				set_vertical_state(verticalState.FALL)
-			elif Input.is_action_just_released("Jump"):
-				canContinueJump = false
-				
-			elif jumpContinueTimer > 0 && Input.is_action_pressed("Jump") && canContinueJump:
-				
-				velocity.y = -jumpSpeed
-			elif Input.is_action_just_pressed("Jump") && signNow == "Paper" && canDJump:
-				velocity.y = -jumpSpeed
-				canDJump = false
-			elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
-				set_vertical_state(verticalState.DASH)
-			elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
-				set_vertical_state(verticalState.HANG)
-			if !direction:
-				velocity.x *= airFriction
-			else:
-				lastDirection = direction
-		verticalState.FALL:
-			velocity.x += direction * accelerationAir
-			velocity.x = clamp(velocity.x, -maxSpeedAir, maxSpeedAir)
-			velocity.y += gravAcc * delta
-			
-			if is_on_floor():
-				set_vertical_state(verticalState.GROUND)
-			elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
-				set_vertical_state(verticalState.DASH)
-			elif Input.is_action_just_pressed("Jump") && ((signNow == "Paper" && canDJump) || (coyoteTimer > 0)):
-				velocity.y = -jumpSpeed
-				canDJump = false
-				set_vertical_state(verticalState.JUMP)
-			elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
-				set_vertical_state(verticalState.HANG)
-			elif Input.is_action_just_pressed("Jump") && canAutoJump:
-				autoJump = true
-				canAutoJump = false
-			if !direction:
-				velocity.x *= airFriction
-			if direction:
-				lastDirection = direction
-		verticalState.DASH:
-			dashTimer -= delta
-			velocity.y += dashGravAcc * delta
-			if dashTimer <= 0:
-				dashTimer = 0
-				set_vertical_state(verticalState.FALL)
-			if Input.is_action_just_pressed("Jump") && signNow == "Rock":
-				set_vertical_state(verticalState.HANG)
-		verticalState.HANG:
-			velocity.x = 0
-			velocity.y = 0
-			hangTimer -= delta
-			if hangTimer <= 0:
-				hangTimer = 0
-				set_vertical_state(verticalState.FASTFALL)
-		verticalState.FASTFALL:
-			velocity.y += fastFallAcc * delta
-			velocity.x = 0
-			if is_on_floor():
-				set_vertical_state(verticalState.GROUND)
-	match currentHorizontalState:
-		horizontalState.CENTER:
-			if direction == 1:
-				set_horizontal_state(horizontalState.RIGHT)
-			elif direction == -1:
-				set_horizontal_state(horizontalState.LEFT)
-		horizontalState.LEFT:
-			if direction != -1:
-				set_horizontal_state(horizontalState.CENTER)
-		horizontalState.RIGHT:
-			if direction != 1:
-				set_horizontal_state(horizontalState.CENTER)
 
-func update_death_state(delta: float) -> void:
+func update_state(delta: float) -> void:
+	if get_parent().alive:
+		move_and_slide()
+		set_current_state()
+		if coyoteTimer > 0:
+			coyoteTimer -= delta
+		update_animation(delta)
+		set_direction()
+		update_vertical_state(delta)
+		update_horizontal_state(delta)
+	else:
+		update_death(delta)
+
+func update_death(delta: float) -> void:
 	$"../HeroAnimation".play("DEATH_" + horizontalState.keys()[currentHorizontalState])
 	if !is_on_floor():
 		velocity.y += gravAcc * delta
 	else:
 		velocity.x *= 0.9
-
-func _physics_process(delta: float) -> void:
-	move_and_slide()
-	if get_parent().alive:
-		update_state(delta)
-	else:
-		update_death_state(delta)
-
-func _process(_delta: float) -> void:
-	signNow = get_parent().signNow
-
 
 func _on_coyote_area_body_entered(_body: Node2D) -> void:
 	canAutoJump = true

@@ -11,10 +11,9 @@ var signs = ["Rock", "Paper", "Scissors"]
 var signNowNumber = 0
 var signNextNumber = 0
 var maxHealth = 4
-var health = 4
 var alive = true
 var transDeathAnim := ""
-var abilities = {"Health": false, "Stance": false}
+var abilities = {"Health": true, "Stance": false}
 @onready var save_dict = {
 	"pos_x": $Body.position.x,
 	"pos_y": $Body.position.y
@@ -65,11 +64,7 @@ func collect(type: String):
 			bar.position = barWithPlatePosition
 		collectedSigns.append(type)
 		change_sign(type)
-	else:
-		match type:
-			"Heart":
-				abilities["Health"] = true
-				bar.position = barPosition
+
 
 func change_sign(newSign: String):
 	if signNow != newSign && collectedSigns.has(newSign):
@@ -82,14 +77,14 @@ func play_sign_change_anim():
 	$SignAnimation.play(signAnimationName)
 
 func take_damage(amount: int, isTrap: bool):
-	if amount >= health:
-		health = 0
+	if amount >= GlobalVars.health:
+		GlobalVars.health = 0
 		die()
 	elif isTrap:
 		$Body.go_to_checkpoint()
-		health -= amount
+		GlobalVars.health -= amount
 	else:
-		health -= amount
+		GlobalVars.health -= amount
 	pass
 
 func die() -> void:
@@ -105,14 +100,14 @@ func _physics_process(_delta: float) -> void:
 	set_camera_position()
 
 func _process(_delta: float) -> void:
-	for i in range(health):
+	for i in range(GlobalVars.health):
 		HP[i + 1].frame = HPtype["CommonFull"]
-	for i in range(4 - health):
+	for i in range(4 - GlobalVars.health):
 		HP[4 - i].frame = HPtype["Empty"]
 	if Input.is_action_just_pressed("Restart"):
 		$Body.go_to_checkpoint()
 		alive = true
-		health = maxHealth
+		GlobalVars.health = maxHealth
 	transDeathAnim = $Body.currentGlobalMovementState + "_DEATH"
 	if Input.is_action_just_pressed("Quick_Save"):
 		save_game()
