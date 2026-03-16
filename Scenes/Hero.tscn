@@ -1,54 +1,8 @@
 [gd_scene format=3 uid="uid://xoehne8p6cgi"]
 
 [ext_resource type="Script" uid="uid://bohwqfn5uojbe" path="res://Scripts/Hero.gd" id="1_cfflp"]
-[ext_resource type="Texture2D" uid="uid://d28a16byot64k" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0000.png" id="1_umwv5"]
-[ext_resource type="Texture2D" uid="uid://da6kwbqva8gut" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0001.png" id="2_7sgv7"]
-[ext_resource type="Texture2D" uid="uid://ccqsuj0qk40da" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0002.png" id="3_tp07l"]
-[ext_resource type="Texture2D" uid="uid://bff8bdj4hh3s" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0003.png" id="4_jb2mq"]
-[ext_resource type="Texture2D" uid="uid://c77257vb1fuh4" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0004.png" id="5_63cat"]
-[ext_resource type="Texture2D" uid="uid://bt6pe8u0bgjn6" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0005.png" id="6_c3r7n"]
-[ext_resource type="Texture2D" uid="uid://1jnv2e15rgd0" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0006.png" id="7_7vyrj"]
-[ext_resource type="Texture2D" uid="uid://cx6xshvys5gcy" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0007.png" id="8_sqjyt"]
-[ext_resource type="Texture2D" uid="uid://gsns21hx26s0" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0008.png" id="9_nhu3n"]
-[ext_resource type="Texture2D" uid="uid://w11kiw12bjxe" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0009.png" id="10_4ckua"]
-[ext_resource type="Texture2D" uid="uid://d1teotb2kk2qd" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0010.png" id="11_62scf"]
-[ext_resource type="Texture2D" uid="uid://cuo64afel210g" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0011.png" id="12_lcprh"]
-[ext_resource type="Texture2D" uid="uid://cvkxwli71lgso" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0012.png" id="13_udpmo"]
-[ext_resource type="Texture2D" uid="uid://dkj1yneqkjxii" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0013.png" id="14_0p2mw"]
-[ext_resource type="Texture2D" uid="uid://yelnom68ny17" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0014.png" id="15_oph4i"]
-[ext_resource type="Texture2D" uid="uid://chcf2l551iygt" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0014.png" id="16_kasfw"]
-[ext_resource type="Texture2D" uid="uid://xo2apt0l5haa" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0013.png" id="17_cfflp"]
-[ext_resource type="Texture2D" uid="uid://cdiawbfffetts" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0012.png" id="18_n5r0s"]
-[ext_resource type="Texture2D" uid="uid://xbkvx168xa3p" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0011.png" id="19_0qxue"]
-[ext_resource type="Texture2D" uid="uid://p1ehogk85hau" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0010.png" id="20_1nisp"]
-[ext_resource type="Texture2D" uid="uid://y57fsxulkb0m" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0009.png" id="21_m3jcv"]
-[ext_resource type="Texture2D" uid="uid://dsssfgql6un4r" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0008.png" id="22_08xsn"]
-[ext_resource type="Texture2D" uid="uid://cr4807dovjnsm" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0007.png" id="23_bb2st"]
-[ext_resource type="Texture2D" uid="uid://dason6y1gcfoc" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0006.png" id="24_i0mxv"]
-[ext_resource type="Texture2D" uid="uid://bjyqtslig4ksb" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0005.png" id="25_v41lu"]
-[ext_resource type="Texture2D" uid="uid://ccsdx4bo0lbws" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0004.png" id="26_jym5l"]
-[ext_resource type="Texture2D" uid="uid://n5qmfxn4m4yn" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0003.png" id="27_t1eyo"]
-[ext_resource type="Texture2D" uid="uid://k5ag8aij3djc" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0002.png" id="28_yu36n"]
-[ext_resource type="Texture2D" uid="uid://bkhxcswxe3mym" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0001.png" id="29_m27fp"]
-[ext_resource type="Texture2D" uid="uid://b7ekoma0fmfri" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0000.png" id="30_px3g1"]
-[ext_resource type="Texture2D" uid="uid://cvgxdn58u0pjs" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0000.png" id="32_ufq7d"]
-[ext_resource type="Texture2D" uid="uid://cs3uevwiosrg5" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0001.png" id="33_sxtcv"]
-[ext_resource type="Texture2D" uid="uid://i8or7xacdhla" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0002.png" id="34_m3wm2"]
-[ext_resource type="Texture2D" uid="uid://bkoi3ijs5kwpi" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0003.png" id="35_p5bro"]
-[ext_resource type="Texture2D" uid="uid://b87ivic85ehtj" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0004.png" id="36_7hqq7"]
-[ext_resource type="Texture2D" uid="uid://b8533ahjwqfc1" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0005.png" id="37_3brhn"]
-[ext_resource type="Texture2D" uid="uid://dkbmtrxjpraay" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0006.png" id="38_4uptw"]
-[ext_resource type="Texture2D" uid="uid://bejmxmnkjm3qj" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0007.png" id="39_0oe2b"]
-[ext_resource type="Texture2D" uid="uid://bvm628vo5ab6c" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0008.png" id="40_yjkt7"]
-[ext_resource type="Texture2D" uid="uid://chkio1leailm1" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0009.png" id="41_j58sm"]
-[ext_resource type="Texture2D" uid="uid://2omlshpjvw83" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0010.png" id="42_72u2g"]
-[ext_resource type="Texture2D" uid="uid://dvlumf1u0ua00" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0011.png" id="43_norba"]
-[ext_resource type="Texture2D" uid="uid://daehodqo3h0do" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0012.png" id="44_1ehet"]
-[ext_resource type="Texture2D" uid="uid://buw27qi7t0mvv" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0013.png" id="45_duri5"]
-[ext_resource type="Texture2D" uid="uid://cepand2ubomvn" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Paper_Rock/Frame0014.png" id="46_pow7l"]
 [ext_resource type="Texture2D" uid="uid://btbimea4n0dxn" path="res://Resources/Textures/Hero/Body/Transitions/GROUND_CENTER_LEFT/Frame0001.png" id="47_4p0r7"]
 [ext_resource type="Texture2D" uid="uid://dl5uikic6308g" path="res://Resources/Textures/Hero/Body/Stable/FALL_RIGHT/Frame0000.png" id="47_oiwkm"]
-[ext_resource type="Texture2D" uid="uid://beuyejq5njbah" path="res://Resources/Textures/HUD/Sign/Base/Common.png" id="47_sxtcv"]
 [ext_resource type="Texture2D" uid="uid://dsv704oy7f125" path="res://Resources/Textures/Hero/Body/Stable/FALL_RIGHT/Frame0001.png" id="48_7vsja"]
 [ext_resource type="Texture2D" uid="uid://7gxfhjjm7o71" path="res://Resources/Textures/Hero/Body/Transitions/GROUND_CENTER_LEFT/Frame0002.png" id="48_e8a8j"]
 [ext_resource type="Script" uid="uid://byf4css0knthr" path="res://Scripts/HeroPhysic.gd" id="48_m3wm2"]
@@ -188,173 +142,51 @@
 [ext_resource type="Texture2D" uid="uid://blkpx2r2qsus5" path="res://Resources/Textures/Hero/Body/Transitions/JUMP_CENTER_RIGHT_2/Frame0002.png" id="170_gp4og"]
 [ext_resource type="Texture2D" uid="uid://cr0g8s65ek2pu" path="res://Resources/Textures/Hero/Body/Transitions/JUMP_CENTER_RIGHT_2/Frame0003.png" id="171_hgtq8"]
 [ext_resource type="Texture2D" uid="uid://l1e6k7qatxfq" path="res://Resources/Textures/Hero/Body/Transitions/JUMP_CENTER_RIGHT_2/Frame0004.png" id="172_htclj"]
-[ext_resource type="Texture2D" uid="uid://c62qlddsoxgpf" path="res://Resources/Textures/HUD/HPBar/Bar.png" id="197_gm4nh"]
-[ext_resource type="Texture2D" uid="uid://bq0wy28bbvn0p" path="res://Resources/Textures/HUD/HPBar/Empty_HP.png" id="198_gp4og"]
 
 [sub_resource type="Animation" id="Animation_hgtq8"]
 resource_name = "None-Paper"
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("16_kasfw")]
-}
 
 [sub_resource type="Animation" id="Animation_gm4nh"]
 resource_name = "None-Rock"
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.016666668),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("15_oph4i")]
-}
 
 [sub_resource type="Animation" id="Animation_gp4og"]
 resource_name = "None-Scissors"
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("30_px3g1")]
-}
 
 [sub_resource type="Animation" id="Animation_0qxue"]
 resource_name = "Paper-Rock"
 length = 0.25000167
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1, 0.11666667, 0.13333334, 0.15, 0.16666667, 0.18333334, 0.2, 0.21666667, 0.23333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("32_ufq7d"), ExtResource("33_sxtcv"), ExtResource("34_m3wm2"), ExtResource("35_p5bro"), ExtResource("36_7hqq7"), ExtResource("37_3brhn"), ExtResource("38_4uptw"), ExtResource("39_0oe2b"), ExtResource("40_yjkt7"), ExtResource("41_j58sm"), ExtResource("42_72u2g"), ExtResource("43_norba"), ExtResource("44_1ehet"), ExtResource("45_duri5"), ExtResource("46_pow7l")]
-}
 
 [sub_resource type="Animation" id="Animation_i4sva"]
 resource_name = "Paper-Scissors"
 length = 0.25000167
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1, 0.11666667, 0.13333334, 0.15, 0.16666667, 0.18333334, 0.2, 0.21666667, 0.23333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("16_kasfw"), ExtResource("17_cfflp"), ExtResource("18_n5r0s"), ExtResource("19_0qxue"), ExtResource("20_1nisp"), ExtResource("21_m3jcv"), ExtResource("22_08xsn"), ExtResource("23_bb2st"), ExtResource("24_i0mxv"), ExtResource("25_v41lu"), ExtResource("26_jym5l"), ExtResource("27_t1eyo"), ExtResource("28_yu36n"), ExtResource("29_m27fp"), ExtResource("30_px3g1")]
-}
 
 [sub_resource type="Animation" id="Animation_cfflp"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_umwv5")]
-}
 
 [sub_resource type="Animation" id="Animation_1nisp"]
 resource_name = "Rock-Paper"
 length = 0.25000167
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1, 0.11666667, 0.13333334, 0.15, 0.16666667, 0.18333334, 0.2, 0.21666667, 0.23333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("46_pow7l"), ExtResource("45_duri5"), ExtResource("44_1ehet"), ExtResource("43_norba"), ExtResource("42_72u2g"), ExtResource("41_j58sm"), ExtResource("40_yjkt7"), ExtResource("39_0oe2b"), ExtResource("38_4uptw"), ExtResource("37_3brhn"), ExtResource("36_7hqq7"), ExtResource("35_p5bro"), ExtResource("34_m3wm2"), ExtResource("33_sxtcv"), ExtResource("32_ufq7d")]
-}
 
 [sub_resource type="Animation" id="Animation_n5r0s"]
 resource_name = "Rock-Scissors"
 length = 0.25000167
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1, 0.11666667, 0.13333334, 0.15, 0.16666667, 0.18333334, 0.2, 0.21666667, 0.23333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("15_oph4i"), ExtResource("14_0p2mw"), ExtResource("13_udpmo"), ExtResource("12_lcprh"), ExtResource("11_62scf"), ExtResource("10_4ckua"), ExtResource("9_nhu3n"), ExtResource("8_sqjyt"), ExtResource("7_7vyrj"), ExtResource("6_c3r7n"), ExtResource("5_63cat"), ExtResource("4_jb2mq"), ExtResource("3_tp07l"), ExtResource("2_7sgv7"), ExtResource("1_umwv5")]
-}
 
 [sub_resource type="Animation" id="Animation_ufq7d"]
 resource_name = "Scissors-Paper"
 length = 0.25000167
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1, 0.11666667, 0.13333334, 0.15, 0.16666667, 0.18333334, 0.2, 0.21666667, 0.23333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("30_px3g1"), ExtResource("29_m27fp"), ExtResource("28_yu36n"), ExtResource("27_t1eyo"), ExtResource("26_jym5l"), ExtResource("25_v41lu"), ExtResource("24_i0mxv"), ExtResource("23_bb2st"), ExtResource("22_08xsn"), ExtResource("21_m3jcv"), ExtResource("20_1nisp"), ExtResource("19_0qxue"), ExtResource("18_n5r0s"), ExtResource("17_cfflp"), ExtResource("16_kasfw")]
-}
 
 [sub_resource type="Animation" id="Animation_kasfw"]
 resource_name = "Scissors-Rock"
 length = 0.25000167
 step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Sign/Sign:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1, 0.11666667, 0.13333334, 0.15, 0.16666667, 0.18333334, 0.2, 0.21666667, 0.23333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("1_umwv5"), ExtResource("2_7sgv7"), ExtResource("3_tp07l"), ExtResource("4_jb2mq"), ExtResource("5_63cat"), ExtResource("6_c3r7n"), ExtResource("7_7vyrj"), ExtResource("8_sqjyt"), ExtResource("9_nhu3n"), ExtResource("10_4ckua"), ExtResource("11_62scf"), ExtResource("12_lcprh"), ExtResource("13_udpmo"), ExtResource("14_0p2mw"), ExtResource("15_oph4i")]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qxue"]
 _data = {
@@ -992,18 +824,6 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_o0b4j"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Bar/Bar:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("197_gm4nh")]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_55o2c"]
 _data = {
@@ -1044,69 +864,6 @@ polygon = PackedVector2Array(8, 36, 27, 100, 43, 100, 60, 35, 60, -29, 51, -61, 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CoyoteArea" unique_id=1933520157]
 position = Vector2(-3, 127)
 shape = SubResource("RectangleShape2D_gp4og")
-
-[node name="HUD" type="Node2D" parent="." unique_id=1059420288]
-z_index = 10
-position = Vector2(945, 530)
-
-[node name="Bar" type="Node2D" parent="HUD" unique_id=1726626402]
-position = Vector2(-109, 170)
-
-[node name="Bar" type="Sprite2D" parent="HUD/Bar" unique_id=2104727479]
-texture_filter = 1
-position = Vector2(-622.5, -643.5)
-scale = Vector2(2, 2)
-texture = ExtResource("197_gm4nh")
-
-[node name="HP" type="Node2D" parent="HUD/Bar" unique_id=2125097327]
-texture_filter = 1
-
-[node name="HP1" type="Node2D" parent="HUD/Bar/HP" unique_id=1221101297]
-texture_filter = 1
-position = Vector2(-672.5, -660.5)
-
-[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP1" unique_id=953178376]
-texture_filter = 1
-texture = ExtResource("198_gp4og")
-hframes = 2
-
-[node name="HP2" type="Node2D" parent="HUD/Bar/HP" unique_id=636378328]
-position = Vector2(-560.5, -660.5)
-
-[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP2" unique_id=1484924724]
-texture_filter = 1
-texture = ExtResource("198_gp4og")
-hframes = 2
-
-[node name="HP3" type="Node2D" parent="HUD/Bar/HP" unique_id=408731303]
-position = Vector2(-672.5, -624.5)
-
-[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP3" unique_id=266708854]
-texture = ExtResource("198_gp4og")
-hframes = 2
-
-[node name="HP4" type="Node2D" parent="HUD/Bar/HP" unique_id=1259706370]
-position = Vector2(-560.5, -624.5)
-
-[node name="Sprite" type="Sprite2D" parent="HUD/Bar/HP/HP4" unique_id=2010290192]
-texture = ExtResource("198_gp4og")
-hframes = 2
-
-[node name="Sign" type="Node2D" parent="HUD" unique_id=1153885772]
-position = Vector2(24.5, -11.5)
-
-[node name="Plate" type="Sprite2D" parent="HUD/Sign" unique_id=1136067944]
-z_as_relative = false
-texture_filter = 1
-position = Vector2(-846.5, -643.5)
-scale = Vector2(2, 2)
-texture = ExtResource("47_sxtcv")
-
-[node name="Sign" type="Sprite2D" parent="HUD/Sign" unique_id=573412532]
-texture_filter = 1
-position = Vector2(-846, -641)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_umwv5")
 
 [connection signal="body_entered" from="Body/CoyoteArea" to="Body" method="_on_coyote_area_body_entered"]
 [connection signal="body_exited" from="Body/CoyoteArea" to="Body" method="_on_coyote_area_body_exited"]

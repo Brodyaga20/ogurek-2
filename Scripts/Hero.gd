@@ -6,14 +6,13 @@ var signAnimationName := ""
 var cameraSpeed = Vector2.ZERO
 var distanceCameraToHero := 0
 const animationLength := 0.25
-var collectedSigns = []
 var signs = ["Rock", "Paper", "Scissors"]
 var signNowNumber = 0
 var signNextNumber = 0
 var maxHealth = 4
 var alive = true
 var transDeathAnim := ""
-var abilities = {"Health": true, "Stance": false}
+
 @onready var save_dict = {
 	"pos_x": $Body.position.x,
 	"pos_y": $Body.position.y
@@ -23,14 +22,9 @@ const barPosition = Vector2(-110, 180)
 const platePosition = Vector2(5, 205)
 const barWithPlatePosition = Vector2(-5, 205)
 
-const HPtype = {"Empty": 0, "CommonFull": 1}
+
 
 #region onready
-@onready var HP = {1: $HUD/Bar/HP/HP1/Sprite, 2: $HUD/Bar/HP/HP2/Sprite, 3: $HUD/Bar/HP/HP3/Sprite, 4: $HUD/Bar/HP/HP4/Sprite}
-@onready var HUD = $HUD
-@onready var signPlate = $HUD/Sign
-@onready var signSprite = $HUD/Sign/Sign
-@onready var bar = $HUD/Bar
 #endregion
 
 func save_game():
@@ -54,20 +48,19 @@ func load_game():
 		$Body.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 
 func _ready():
-	signSprite.texture = null
+	pass
+	#signSprite.texture = null
 
 func collect(type: String):
 	if type in signs:
-		if collectedSigns.is_empty():
-			abilities["Stance"] = true
-			signPlate.position = platePosition
-			bar.position = barWithPlatePosition
-		collectedSigns.append(type)
+		if GlobalVars.collectedSigns.is_empty():
+			GlobalVars.abilities["Stance"] = true
+		GlobalVars.collectedSigns.append(type)
 		change_sign(type)
 
 
 func change_sign(newSign: String):
-	if signNow != newSign && collectedSigns.has(newSign):
+	if signNow != newSign && GlobalVars.collectedSigns.has(newSign):
 		signPrevious = signNow
 		signNow = newSign
 	play_sign_change_anim()
@@ -96,10 +89,7 @@ func _physics_process(_delta: float) -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	for i in range(GlobalVars.health):
-		HP[i + 1].frame = HPtype["CommonFull"]
-	for i in range(4 - GlobalVars.health):
-		HP[4 - i].frame = HPtype["Empty"]
+
 	if Input.is_action_just_pressed("Restart"):
 		$Body.go_to_checkpoint()
 		alive = true
@@ -117,12 +107,12 @@ func _process(_delta: float) -> void:
 		change_sign("Scissors")
 	elif ((Input.is_action_just_pressed("Paper_Sign"))):
 		change_sign("Paper")
-	if Input.is_action_just_pressed("Next_Sign") && collectedSigns.size() >= 1:
-		signNowNumber = collectedSigns.find(signNow) + 1
+	if Input.is_action_just_pressed("Next_Sign") && GlobalVars.collectedSigns.size() >= 1:
+		signNowNumber = GlobalVars.collectedSigns.find(signNow) + 1
 		signNextNumber = signNowNumber + 1
-		if signNextNumber > collectedSigns.size():
+		if signNextNumber > GlobalVars.collectedSigns.size():
 			signNextNumber = 1
-		change_sign(collectedSigns[signNextNumber - 1])
+		change_sign(GlobalVars.collectedSigns[signNextNumber - 1])
 	
 	
 	#endregion

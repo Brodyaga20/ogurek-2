@@ -16,7 +16,7 @@ const dashGravAcc := 3000
 const fastFallAcc := 10000
 const slowFallAcc := 20
 
-const jumpSpeed := 900
+const jumpSpeed := 950
 
 const dashSpeed := 2000
 

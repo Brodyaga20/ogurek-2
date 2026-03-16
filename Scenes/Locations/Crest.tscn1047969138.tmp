@@ -37,7 +37,11 @@
 [ext_resource type="Texture2D" uid="uid://rqcqlpblagro" path="res://Resources/Textures/Environment/Crest/Traps/Spikes.png" id="30_60bo7"]
 [ext_resource type="PackedScene" uid="uid://tccmexfshjmy" path="res://Scenes/Checkpoint.tscn" id="30_iw8la"]
 [ext_resource type="Texture2D" uid="uid://f173d7ra38hd" path="res://Resources/Textures/Environment/Crest/Background/1.png" id="33_jqrfj"]
+[ext_resource type="Texture2D" uid="uid://c62qlddsoxgpf" path="res://Resources/Textures/HUD/HPBar/Bar.png" id="33_n1csv"]
 [ext_resource type="Texture2D" uid="uid://do8wbf2hi85yo" path="res://Resources/Textures/Temp/Restart.png" id="34_f7pya"]
+[ext_resource type="Texture2D" uid="uid://bq0wy28bbvn0p" path="res://Resources/Textures/HUD/HPBar/Empty_HP.png" id="34_qgrjg"]
+[ext_resource type="Texture2D" uid="uid://beuyejq5njbah" path="res://Resources/Textures/HUD/Sign/Base/Common.png" id="35_w5f17"]
+[ext_resource type="Texture2D" uid="uid://d28a16byot64k" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Rock_Scissors/Frame0000.png" id="36_7vuv3"]
 [ext_resource type="PackedScene" uid="uid://c4j6wn7ktripy" path="res://Scenes/Transition.tscn" id="39_w6xqv"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5b1h"]
@@ -524,6 +528,69 @@ position = Vector2(854, 461)
 
 [node name="Camera2D" type="Camera2D" parent="Hero" unique_id=1653431737]
 position = Vector2(455, 383)
+
+[node name="HUD" type="Node2D" parent="Hero/Camera2D" unique_id=2129136216]
+z_index = 10
+position = Vector2(945, 530)
+
+[node name="Bar" type="Node2D" parent="Hero/Camera2D/HUD" unique_id=827091560]
+position = Vector2(-109, 170)
+
+[node name="Bar" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar" unique_id=587167250]
+texture_filter = 1
+position = Vector2(-622.5, -643.5)
+scale = Vector2(2, 2)
+texture = ExtResource("33_n1csv")
+
+[node name="HP" type="Node2D" parent="Hero/Camera2D/HUD/Bar" unique_id=689529801]
+texture_filter = 1
+
+[node name="HP1" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=228196165]
+texture_filter = 1
+position = Vector2(-672.5, -660.5)
+
+[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP1" unique_id=461887339]
+texture_filter = 1
+texture = ExtResource("34_qgrjg")
+hframes = 2
+
+[node name="HP2" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=598227127]
+position = Vector2(-560.5, -660.5)
+
+[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP2" unique_id=1771071109]
+texture_filter = 1
+texture = ExtResource("34_qgrjg")
+hframes = 2
+
+[node name="HP3" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=75567800]
+position = Vector2(-672.5, -624.5)
+
+[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP3" unique_id=1644193951]
+texture = ExtResource("34_qgrjg")
+hframes = 2
+
+[node name="HP4" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=1250270021]
+position = Vector2(-560.5, -624.5)
+
+[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP4" unique_id=34076166]
+texture = ExtResource("34_qgrjg")
+hframes = 2
+
+[node name="Sign" type="Node2D" parent="Hero/Camera2D/HUD" unique_id=2076047728]
+position = Vector2(24.5, -11.5)
+
+[node name="Plate" type="Sprite2D" parent="Hero/Camera2D/HUD/Sign" unique_id=787707279]
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-846.5, -643.5)
+scale = Vector2(2, 2)
+texture = ExtResource("35_w5f17")
+
+[node name="Sign" type="Sprite2D" parent="Hero/Camera2D/HUD/Sign" unique_id=369393406]
+texture_filter = 1
+position = Vector2(-846, -641)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("36_7vuv3")
 
 [node name="Items" type="Node2D" parent="." unique_id=612216243]
 
