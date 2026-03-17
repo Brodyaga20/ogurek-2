@@ -103,7 +103,6 @@
 [ext_resource type="Texture2D" uid="uid://cjh825ds4cx3f" path="res://Resources/Textures/Hero/Body/Stable/GROUND_RIGHT/Frame0015.png" id="91_bd7el"]
 [ext_resource type="Texture2D" uid="uid://c1akipw16ds2l" path="res://Resources/Textures/Hero/Body/Stable/GROUND_RIGHT/Frame0016.png" id="92_wv5vb"]
 [ext_resource type="Texture2D" uid="uid://b7yg7qhdi35xk" path="res://Resources/Textures/Hero/Body/Stable/JUMP_RIGHT/Frame0000.png" id="99_n8vnw"]
-[ext_resource type="Texture2D" uid="uid://csqoc0hi575h" path="res://Resources/Textures/Hero/Body/Stable/JUMP_RIGHT/Frame0002.png" id="101_lxrlg"]
 [ext_resource type="Texture2D" uid="uid://dh2jj3gb2evgp" path="res://Resources/Textures/Hero/Body/Transitions/GROUND_JUMP_CENTER/Frame0000.png" id="102_ti4ng"]
 [ext_resource type="Texture2D" uid="uid://cu6w0x8vp6wgc" path="res://Resources/Textures/Hero/Body/Stable/JUMP_RIGHT/Frame0004.png" id="103_7o504"]
 [ext_resource type="Texture2D" uid="uid://bi72ox7rbspd4" path="res://Resources/Textures/Hero/Body/Transitions/GROUND_JUMP_CENTER/Frame0001.png" id="103_nsi28"]
@@ -115,7 +114,6 @@
 [ext_resource type="Texture2D" uid="uid://bygvkkkmmpmgf" path="res://Resources/Textures/Hero/Body/Stable/JUMP_RIGHT/Frame0009.png" id="108_1vtb6"]
 [ext_resource type="Texture2D" uid="uid://blgh3gi74ws18" path="res://Resources/Textures/Hero/Body/Stable/JUMP_RIGHT/Frame0010.png" id="109_16n2g"]
 [ext_resource type="Texture2D" uid="uid://c2gmyvhp6t4gw" path="res://Resources/Textures/Hero/Body/Stable/JUMP_LEFT/Frame0000.png" id="115_rqnp8"]
-[ext_resource type="Texture2D" uid="uid://ba0uy1r22pb02" path="res://Resources/Textures/Hero/Body/Stable/JUMP_LEFT/Frame0002.png" id="117_5j2ix"]
 [ext_resource type="Texture2D" uid="uid://ftn1kv6hc2ko" path="res://Resources/Textures/Hero/Body/Stable/JUMP_LEFT/Frame0004.png" id="119_ke8tj"]
 [ext_resource type="Texture2D" uid="uid://bx2uf6veddnip" path="res://Resources/Textures/Hero/Body/Stable/JUMP_LEFT/Frame0005.png" id="120_mluni"]
 [ext_resource type="Texture2D" uid="uid://c5plh5155iv6u" path="res://Resources/Textures/Hero/Body/Stable/JUMP_LEFT/Frame0007.png" id="122_r8hkc"]
@@ -684,7 +682,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6jn5l"]
 resource_name = "JUMP_LEFT"
-length = 0.10000167
+length = 0.083335005
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -693,10 +691,10 @@ tracks/0/path = NodePath("Body/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("115_rqnp8"), ExtResource("117_5j2ix"), ExtResource("119_ke8tj"), ExtResource("120_mluni"), ExtResource("122_r8hkc"), ExtResource("124_wbufj"), ExtResource("125_8n6rj")]
+"values": [ExtResource("115_rqnp8"), ExtResource("119_ke8tj"), ExtResource("120_mluni"), ExtResource("122_r8hkc"), ExtResource("124_wbufj"), ExtResource("125_8n6rj")]
 }
 
 [sub_resource type="Animation" id="Animation_bd7el"]
@@ -718,7 +716,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hc0xd"]
 resource_name = "JUMP_RIGHT"
-length = 0.10000167
+length = 0.083335005
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -727,10 +725,10 @@ tracks/0/path = NodePath("Body/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("99_n8vnw"), ExtResource("101_lxrlg"), ExtResource("103_7o504"), ExtResource("104_d37oc"), ExtResource("106_oiwkm"), ExtResource("108_1vtb6"), ExtResource("109_16n2g")]
+"values": [ExtResource("99_n8vnw"), ExtResource("103_7o504"), ExtResource("104_d37oc"), ExtResource("106_oiwkm"), ExtResource("108_1vtb6"), ExtResource("109_16n2g")]
 }
 
 [sub_resource type="Animation" id="Animation_lvher"]

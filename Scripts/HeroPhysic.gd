@@ -202,6 +202,7 @@ func update_vertical_state_jump(delta: float):
 		set_vertical_state(verticalState.FALL)
 	elif Input.is_action_just_released("Jump"):
 		canContinueJump = false
+		velocity.y *= 0.9
 	elif jumpContinueTimer > 0 && Input.is_action_pressed("Jump") && canContinueJump:
 		velocity.y = -jumpSpeed
 	elif Input.is_action_just_pressed("Jump") && signNow == "Paper" && canDJump:

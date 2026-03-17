@@ -12,69 +12,73 @@
 script = ExtResource("1_mjusi")
 
 [node name="Hero" parent="." unique_id=1801713874 instance=ExtResource("2_dnjoc")]
-position = Vector2(854, 461)
+position = Vector2(9, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Hero" unique_id=1653431737]
-position = Vector2(455, 383)
+position = Vector2(960, 540)
+limit_left = -200
+limit_bottom = 1725
 
-[node name="HUD" type="Node2D" parent="Hero/Camera2D" unique_id=2129136216]
+[node name="CanvasLayer" type="CanvasLayer" parent="Hero" unique_id=1854102109]
+
+[node name="HUD" type="Node2D" parent="Hero/CanvasLayer" unique_id=2129136216]
 z_index = 10
-position = Vector2(945, 530)
+position = Vector2(960, 540)
 
-[node name="Bar" type="Node2D" parent="Hero/Camera2D/HUD" unique_id=827091560]
-position = Vector2(-1086, -363)
+[node name="Bar" type="Node2D" parent="Hero/CanvasLayer/HUD" unique_id=827091560]
+position = Vector2(-128, 174)
 
-[node name="Bar" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar" unique_id=587167250]
+[node name="Bar" type="Sprite2D" parent="Hero/CanvasLayer/HUD/Bar" unique_id=587167250]
 texture_filter = 1
 position = Vector2(-622.5, -643.5)
 scale = Vector2(2, 2)
 texture = ExtResource("3_8l5b3")
 
-[node name="HP" type="Node2D" parent="Hero/Camera2D/HUD/Bar" unique_id=689529801]
+[node name="HP" type="Node2D" parent="Hero/CanvasLayer/HUD/Bar" unique_id=689529801]
 texture_filter = 1
 
-[node name="HP1" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=228196165]
+[node name="HP1" type="Node2D" parent="Hero/CanvasLayer/HUD/Bar/HP" unique_id=228196165]
 texture_filter = 1
 position = Vector2(-672.5, -660.5)
 
-[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP1" unique_id=461887339]
+[node name="Sprite" type="Sprite2D" parent="Hero/CanvasLayer/HUD/Bar/HP/HP1" unique_id=461887339]
 texture_filter = 1
 texture = ExtResource("4_c070x")
 hframes = 2
 
-[node name="HP2" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=598227127]
+[node name="HP2" type="Node2D" parent="Hero/CanvasLayer/HUD/Bar/HP" unique_id=598227127]
 position = Vector2(-560.5, -660.5)
 
-[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP2" unique_id=1771071109]
+[node name="Sprite" type="Sprite2D" parent="Hero/CanvasLayer/HUD/Bar/HP/HP2" unique_id=1771071109]
 texture_filter = 1
 texture = ExtResource("4_c070x")
 hframes = 2
 
-[node name="HP3" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=75567800]
+[node name="HP3" type="Node2D" parent="Hero/CanvasLayer/HUD/Bar/HP" unique_id=75567800]
 position = Vector2(-672.5, -624.5)
 
-[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP3" unique_id=1644193951]
+[node name="Sprite" type="Sprite2D" parent="Hero/CanvasLayer/HUD/Bar/HP/HP3" unique_id=1644193951]
 texture = ExtResource("4_c070x")
 hframes = 2
 
-[node name="HP4" type="Node2D" parent="Hero/Camera2D/HUD/Bar/HP" unique_id=1250270021]
+[node name="HP4" type="Node2D" parent="Hero/CanvasLayer/HUD/Bar/HP" unique_id=1250270021]
 position = Vector2(-560.5, -624.5)
 
-[node name="Sprite" type="Sprite2D" parent="Hero/Camera2D/HUD/Bar/HP/HP4" unique_id=34076166]
+[node name="Sprite" type="Sprite2D" parent="Hero/CanvasLayer/HUD/Bar/HP/HP4" unique_id=34076166]
 texture = ExtResource("4_c070x")
 hframes = 2
 
-[node name="Sign" type="Node2D" parent="Hero/Camera2D/HUD" unique_id=2076047728]
-position = Vector2(-930, -537)
+[node name="Sign" type="Node2D" parent="Hero/CanvasLayer/HUD" unique_id=2076047728]
+position = Vector2(31, -23)
 
-[node name="Plate" type="Sprite2D" parent="Hero/Camera2D/HUD/Sign" unique_id=787707279]
+[node name="Plate" type="Sprite2D" parent="Hero/CanvasLayer/HUD/Sign" unique_id=787707279]
 z_as_relative = false
 texture_filter = 1
 position = Vector2(-846.5, -643.5)
 scale = Vector2(2, 2)
 texture = ExtResource("5_n08nc")
 
-[node name="Sign" type="Sprite2D" parent="Hero/Camera2D/HUD/Sign" unique_id=369393406]
+[node name="Sign" type="Sprite2D" parent="Hero/CanvasLayer/HUD/Sign" unique_id=369393406]
 texture_filter = 1
 position = Vector2(-846, -641)
 scale = Vector2(0.5, 0.5)

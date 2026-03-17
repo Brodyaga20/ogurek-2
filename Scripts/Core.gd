@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var HP = {1: $Hero/Camera2D/HUD/Bar/HP/HP1/Sprite, 2: $Hero/Camera2D/HUD/Bar/HP/HP2/Sprite, 3: $Hero/Camera2D/HUD/Bar/HP/HP3/Sprite, 4: $Hero/Camera2D/HUD/Bar/HP/HP4/Sprite}
+@onready var HP = {1: $Hero/CanvasLayer/HUD/Bar/HP/HP1/Sprite, 2: $Hero/CanvasLayer/HUD/Bar/HP/HP2/Sprite, 3: $Hero/CanvasLayer/HUD/Bar/HP/HP3/Sprite, 4: $Hero/CanvasLayer/HUD/Bar/HP/HP4/Sprite}
 const HPtype = {"Empty": 0, "CommonFull": 1}
 
 @onready var particleGenFollowNode = $Hero.get_child(4)
@@ -9,12 +9,29 @@ const HPtype = {"Empty": 0, "CommonFull": 1}
 var sinTimer = 0
 
 func set_camera_position() -> void:
-	var body = $Hero.get_child(3)
+	var body = $Hero/Body
 	var camera = $Hero/Camera2D
-	var cameraSpeed = (body.position - camera.position)/55
+	var left = camera.limit_left
+	var right = camera.limit_right
+	var bottom = camera.limit_bottom
+	var top = camera.limit_top
+	
+
+	var cameraSpeed = (body.position - camera.position)
+	
+	var viewSize = get_viewport_rect().size
+	var halfView = viewSize * 0.5
+	
+	var targetPoint = camera.position + cameraSpeed
+	targetPoint = Vector2(
+		clamp(targetPoint.x, left + halfView.x, right - halfView.x),
+		clamp(targetPoint.y, top + halfView.y, bottom - halfView.y)
+	)
+
 	var distanceCameraToHero = camera.position.distance_to(body.position)
+	var smoothSpeed = 0.03
 	if distanceCameraToHero > 5:
-		camera.position = lerp(camera.position, camera.position+cameraSpeed, 2)
+		camera.position = camera.position.lerp(targetPoint, smoothSpeed)
 
 func particle_follow() -> void:
 	particleNode.position = particleGenFollowNode.position + Vector2(-900, -540) + $Hero.position

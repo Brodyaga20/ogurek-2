@@ -49,9 +49,6 @@ gravity = Vector3(0, 0, 0)
 scale_over_velocity_min = 1.0
 scale_over_velocity_max = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sjt3"]
-size = Vector2(89, 384)
-
 [node name="Crest" type="Node2D" unique_id=446887484]
 
 [node name="CoreBackGround" type="Parallax2D" parent="." unique_id=1656286877]
@@ -116,27 +113,6 @@ texture = ExtResource("4_uiog2")
 lifetime = 4.0
 preprocess = 4.0
 process_material = SubResource("ParticleProcessMaterial_w5b1h")
-
-[node name="Spikes" type="Node2D" parent="." unique_id=1928539491]
-
-[node name="Spike1" parent="Spikes" unique_id=337284266 instance=ExtResource("5_meurq")]
-position = Vector2(8860, 10)
-size = Vector2(2500, 10)
-damage = 1
-
-[node name="Spikes" type="Sprite2D" parent="Spikes/Spike1" unique_id=1230343757]
-position = Vector2(16, 3)
-texture = ExtResource("6_g8atu")
-
-[node name="Spike2" parent="Spikes" unique_id=1519785635 instance=ExtResource("5_meurq")]
-position = Vector2(11333, -168)
-rotation = -1.5707964
-size = Vector2(2500, 10)
-damage = 1
-
-[node name="Spikes" type="Sprite2D" parent="Spikes/Spike2" unique_id=2007676529]
-position = Vector2(16, 3)
-texture = ExtResource("6_g8atu")
 
 [node name="Cliffs" type="Node2D" parent="." unique_id=1620548760]
 z_index = 2
@@ -261,14 +237,14 @@ texture = ExtResource("19_qkpgc")
 
 [node name="Cliff4" parent="Cliffs/SmallCliffs/Lift1" unique_id=755229570 instance=ExtResource("11_b3p46")]
 position = Vector2(3523, 1113)
-upperOffset = 15.0
+upperOffset = 18.0
 sideOffset = 12.0
 mass = 6
 texture = ExtResource("20_5rncg")
 
 [node name="Cliff5" parent="Cliffs/SmallCliffs/Lift1" unique_id=605568996 instance=ExtResource("11_b3p46")]
 position = Vector2(3832, 968)
-upperOffset = 23.0
+upperOffset = 25.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 20
@@ -306,7 +282,7 @@ texture = ExtResource("24_j8p8m")
 
 [node name="Cliff9" parent="Cliffs/SmallCliffs/Lift2" unique_id=593423992 instance=ExtResource("11_b3p46")]
 position = Vector2(6769, 291)
-upperOffset = 18.0
+upperOffset = 22.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 10
@@ -315,7 +291,7 @@ texture = ExtResource("25_bgidn")
 
 [node name="Cliff10" parent="Cliffs/SmallCliffs/Lift2" unique_id=504746787 instance=ExtResource("11_b3p46")]
 position = Vector2(6287, 155)
-upperOffset = 18.0
+upperOffset = 27.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -333,7 +309,7 @@ texture = ExtResource("27_iryml")
 
 [node name="Cliff12" parent="Cliffs/SmallCliffs/Lift2" unique_id=965739718 instance=ExtResource("11_b3p46")]
 position = Vector2(5071, -73)
-upperOffset = 30.0
+upperOffset = 35.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 30
@@ -515,6 +491,36 @@ mass = 10
 hitboxType = 1
 texture = ExtResource("25_bgidn")
 
+[node name="Spikes" type="Node2D" parent="." unique_id=1928539491]
+
+[node name="Spike1" parent="Spikes" unique_id=337284266 instance=ExtResource("5_meurq")]
+position = Vector2(8245, -9)
+size = Vector2(400, 10)
+damage = 1
+
+[node name="Spikes" type="Sprite2D" parent="Spikes/Spike1" unique_id=1230343757]
+position = Vector2(16, 3)
+texture = ExtResource("6_g8atu")
+
+[node name="Spike3" parent="Spikes" unique_id=162022994 instance=ExtResource("5_meurq")]
+position = Vector2(316, 1800)
+size = Vector2(400, 10)
+damage = 1
+
+[node name="Spikes" type="Sprite2D" parent="Spikes/Spike3" unique_id=1262621676]
+position = Vector2(16, 3)
+texture = ExtResource("6_g8atu")
+
+[node name="Spike2" parent="Spikes" unique_id=1519785635 instance=ExtResource("5_meurq")]
+position = Vector2(11333, -168)
+rotation = -1.5707964
+size = Vector2(2500, 10)
+damage = 1
+
+[node name="Spikes" type="Sprite2D" parent="Spikes/Spike2" unique_id=2007676529]
+position = Vector2(16, 3)
+texture = ExtResource("6_g8atu")
+
 [node name="Items" type="Node2D" parent="." unique_id=1339728770]
 
 [node name="Signs" type="Node2D" parent="Items" unique_id=1711968674]
@@ -553,16 +559,3 @@ size = Vector2(50, 300)
 [node name="Restart" type="Sprite2D" parent="Temp" unique_id=1645728767]
 position = Vector2(1208, 797)
 texture = ExtResource("36_03vhh")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Temp" unique_id=1822097699]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Temp/StaticBody2D" unique_id=990144736]
-position = Vector2(754, 1028)
-shape = SubResource("RectangleShape2D_0sjt3")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Temp" unique_id=2023747231]
-position = Vector2(6806, -729)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Temp/StaticBody2D2" unique_id=1299829598]
-position = Vector2(754, 1028)
-shape = SubResource("RectangleShape2D_0sjt3")
