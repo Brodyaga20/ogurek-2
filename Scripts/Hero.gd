@@ -1,5 +1,5 @@
 extends Node2D
-var signNow := "None"
+var currentSign := "None"
 var signPrevious := ""
 var velocityX : float = 0
 var signAnimationName := ""
@@ -7,7 +7,7 @@ var cameraSpeed = Vector2.ZERO
 var distanceCameraToHero := 0
 const animationLength := 0.25
 var signs = ["Rock", "Paper", "Scissors"]
-var signNowNumber = 0
+var currentSignNumber = 0
 var signNextNumber = 0
 var maxHealth = 4
 var alive = true
@@ -60,13 +60,13 @@ func collect(type: String):
 
 
 func change_sign(newSign: String):
-	if signNow != newSign && GlobalVars.collectedSigns.has(newSign):
-		signPrevious = signNow
-		signNow = newSign
+	if currentSign != newSign && GlobalVars.collectedSigns.has(newSign):
+		signPrevious = currentSign
+		currentSign = newSign
 	play_sign_change_anim()
 
 func play_sign_change_anim():
-	signAnimationName = signPrevious + "-" + signNow
+	signAnimationName = signPrevious + "-" + currentSign
 	$SignAnimation.play(signAnimationName)
 
 func take_damage(amount: int, isTrap: bool):
@@ -94,7 +94,7 @@ func _process(_delta: float) -> void:
 		$Body.go_to_checkpoint()
 		alive = true
 		GlobalVars.health = maxHealth
-	transDeathAnim = $Body.currentGlobalMovementState + "_DEATH"
+	#transDeathAnim = $Body.currentGlobalMovementState + "_DEATH"
 	if Input.is_action_just_pressed("Quick_Save"):
 		save_game()
 	if Input.is_action_just_pressed("Quick_Load"):
@@ -108,8 +108,8 @@ func _process(_delta: float) -> void:
 	elif ((Input.is_action_just_pressed("Paper_Sign"))):
 		change_sign("Paper")
 	if Input.is_action_just_pressed("Next_Sign") && GlobalVars.collectedSigns.size() >= 1:
-		signNowNumber = GlobalVars.collectedSigns.find(signNow) + 1
-		signNextNumber = signNowNumber + 1
+		currentSignNumber = GlobalVars.collectedSigns.find(currentSign) + 1
+		signNextNumber = currentSignNumber + 1
 		if signNextNumber > GlobalVars.collectedSigns.size():
 			signNextNumber = 1
 		change_sign(GlobalVars.collectedSigns[signNextNumber - 1])

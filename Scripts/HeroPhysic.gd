@@ -39,6 +39,7 @@ var changePoseTimer : float = 0
 const changePoseTimerMax = 0.1
 var stopFallingTimer := 0
 const stopFallingTimerMax = 0
+var attackTimer : float = 0
 #endregion
 
 #region Переменные положения в пространстве
@@ -56,23 +57,24 @@ var canDash = true
 var canContinueJump = false
 #endregion
 
-var signNow = ""
+var currentSign = ""
 var currentTransAnimation := ""
 var currentStableAnimation := ""
 
 #region Переменные состояния
 enum verticalState {GROUND, WALK, JUMP, FALL, DASH, HANG, FASTFALL, DEATH}
 enum horizontalState {CENTER, RIGHT, LEFT}
+enum attackState {NONE, SCISSORS, ROCK, PAPER}
 var currentVerticalState : verticalState
 var currentHorizontalState : horizontalState
-var currentGlobalMovementState := ""
+var currentAttackState : attackState
 #endregion
 
 func _physics_process(delta: float) -> void:
 	update_state(delta)
 
 func _process(_delta: float) -> void:
-	signNow = get_parent().signNow
+	currentSign = get_parent().currentSign
 
 #region Функции смены состояний
 func set_vertical_state(new_state: verticalState) -> void:
@@ -91,8 +93,15 @@ func set_horizontal_state(new_state: horizontalState) -> void:
 	currentHorizontalState = new_state
 	enter_horizontal_state()
 
-func enter_vertical_state() -> void:
+func set_attack_state(new_state: attackState) -> void:
+	exit_attack_state()
+	currentAttackState = new_state
+	enter_attack_state()
+
+func play_trans_anim():
 	$"../HeroAnimation".play(currentTransAnimation)
+
+func enter_vertical_state() -> void:
 	changePoseTimer = changePoseTimerMax
 	match currentVerticalState:
 		verticalState.JUMP:
@@ -105,7 +114,6 @@ func enter_vertical_state() -> void:
 				autoJump = false
 			canDash = true
 			canDJump = true
-			pass
 		verticalState.DASH:
 			canDash = false
 			velocity.y = 0
@@ -123,18 +131,31 @@ func exit_vertical_state() -> void:
 	return
 
 func enter_horizontal_state() -> void:
-	$"../HeroAnimation".play(currentTransAnimation)
-	if currentVerticalState == verticalState.GROUND:
-		changePoseTimer = changePoseTimerMax
-	else:
-		changePoseTimer = -1
+	changePoseTimer = changePoseTimerMax
 	return
 
 func exit_horizontal_state() -> void:
 	return
+
+func enter_attack_state() -> void:
+	match(currentAttackState):
+		"Rock":
+			start_attack_timer(1.5)
+		"Scissors":
+			start_attack_timer(0.12)
+		"Paper":
+			start_attack_timer(0)
+	return
+
+func exit_attack_state() -> void:
+	return
+
+func start_attack_timer(time: float) -> void:
+	attackTimer = time
+
 #endregion
 
-func start_playing_stable_anim() -> void:
+func play_stable_anim() -> void:
 	$"../HeroAnimation".play(currentStableAnimation)
 
 #region Функции чекпоинтов
@@ -145,9 +166,6 @@ func go_to_checkpoint():
 	velocity = Vector2.ZERO
 	position = checkpoint
 #endregion
-
-func set_current_state():
-	currentGlobalMovementState = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
 
 func set_direction():
 	direction = int(Input.is_action_pressed("Right")) -  int(Input.is_action_pressed("Left"))
@@ -186,17 +204,15 @@ func update_vertical_state_ground(delta: float):
 	if Input.is_action_just_pressed("Jump"):
 		set_vertical_state(verticalState.JUMP)
 		velocity.y = -jumpSpeed
-	elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
+	elif Input.is_action_just_pressed("Dash") && currentSign == "Scissors":
 		set_vertical_state(verticalState.DASH)
 	elif !is_on_floor():
 		coyoteTimer = coyoteTimerMax
 		set_vertical_state(verticalState.FALL)
-	elif Input.is_action_just_pressed("Dash") && signNow == "Scissors":
+	elif Input.is_action_just_pressed("Dash") && currentSign == "Scissors":
 		set_vertical_state(verticalState.DASH)
 
 func update_vertical_state_jump(delta: float):
-	if jumpContinueTimer > 0:
-		jumpContinueTimer -= delta
 	update_free_movement(delta, "air")
 	if velocity.y > 0:
 		set_vertical_state(verticalState.FALL)
@@ -205,12 +221,12 @@ func update_vertical_state_jump(delta: float):
 		velocity.y *= 0.9
 	elif jumpContinueTimer > 0 && Input.is_action_pressed("Jump") && canContinueJump:
 		velocity.y = -jumpSpeed
-	elif Input.is_action_just_pressed("Jump") && signNow == "Paper" && canDJump:
+	elif Input.is_action_just_pressed("Jump") && currentSign == "Paper" && canDJump:
 		velocity.y = -jumpSpeed
 		canDJump = false
-	elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
+	elif Input.is_action_just_pressed("Jump") && currentSign == "Scissors" && canDash:
 		set_vertical_state(verticalState.DASH)
-	elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
+	elif Input.is_action_just_pressed("Jump") && currentSign == "Rock":
 		set_vertical_state(verticalState.HANG)
 	if !direction:
 		velocity.x *= airFriction
@@ -221,13 +237,13 @@ func update_vertical_state_fall(delta: float):
 	update_free_movement(delta, "air")
 	if is_on_floor():
 		set_vertical_state(verticalState.GROUND)
-	elif Input.is_action_just_pressed("Jump") && signNow == "Scissors" && canDash:
+	elif Input.is_action_just_pressed("Jump") && currentSign == "Scissors" && canDash:
 		set_vertical_state(verticalState.DASH)
-	elif Input.is_action_just_pressed("Jump") && ((signNow == "Paper" && canDJump) || (coyoteTimer > 0)):
+	elif Input.is_action_just_pressed("Jump") && ((currentSign == "Paper" && canDJump) || (coyoteTimer > 0)):
 		velocity.y = -jumpSpeed
 		canDJump = false
 		set_vertical_state(verticalState.JUMP)
-	elif Input.is_action_just_pressed("Jump") && signNow == "Rock":
+	elif Input.is_action_just_pressed("Jump") && currentSign == "Rock":
 		set_vertical_state(verticalState.HANG)
 	elif Input.is_action_just_pressed("Jump") && canAutoJump:
 		autoJump = true
@@ -250,7 +266,7 @@ func update_vertical_state_dash(delta: float):
 	if dashTimer <= 0:
 		dashTimer = 0
 		set_vertical_state(verticalState.FALL)
-	if Input.is_action_just_pressed("Jump") && signNow == "Rock":
+	if Input.is_action_just_pressed("Jump") && currentSign == "Rock":
 		set_vertical_state(verticalState.HANG)
 
 func update_vertical_state_fastfall(delta: float):
@@ -272,7 +288,7 @@ func update_horizontal_state_right():
 	if direction != 1:
 		set_horizontal_state(horizontalState.CENTER)
 
-func update_horizontal_state(delta: float):
+func update_horizontal_state():
 	match currentHorizontalState:
 		horizontalState.CENTER:
 			update_horizontal_state_center()
@@ -281,26 +297,60 @@ func update_horizontal_state(delta: float):
 		horizontalState.RIGHT:
 			update_horizontal_state_right()
 
+func update_attack_state():
+	match currentAttackState:
+		attackState.NONE:
+			if Input.is_action_just_pressed("Attack"):
+				match currentSign:
+					"Rock":
+						set_attack_state(attackState.ROCK)
+					"Scissors":
+						set_attack_state(attackState.SCISSORS)
+					"Paper":
+						set_attack_state(attackState.PAPER)
+				
+	return
+
 func update_animation(delta: float):
-	if changePoseTimer != 0:
-		changePoseTimer -= delta
-	if changePoseTimer < 0 && changePoseTimer > -1:
-		currentStableAnimation = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
-		start_playing_stable_anim()
-		changePoseTimer = 0
+	update_change_pose_timer(delta)
 
 func update_state(delta: float) -> void:
 	if get_parent().alive:
 		move_and_slide()
-		set_current_state()
-		if coyoteTimer > 0:
-			coyoteTimer -= delta
 		update_animation(delta)
 		set_direction()
 		update_vertical_state(delta)
-		update_horizontal_state(delta)
+		update_horizontal_state()
+		update_attack_state()
+		update_timers(delta)
 	else:
 		update_death(delta)
+
+func update_timers(delta: float):
+	update_coyote_timer(delta)
+	update_attack_timer(delta)
+	update_jump_continue_timer(delta)
+
+func update_coyote_timer(delta: float):
+	if coyoteTimer > 0:
+		coyoteTimer -= delta
+
+func update_jump_continue_timer(delta: float):
+	if jumpContinueTimer > 0:
+		jumpContinueTimer -= delta
+
+func update_attack_timer(delta: float):
+	if attackTimer > 0:
+		attackTimer -= delta
+
+func update_change_pose_timer(delta: float):
+	if changePoseTimer > 0:
+		changePoseTimer -= delta
+		play_trans_anim()
+	if changePoseTimer < 0 && changePoseTimer > -1:
+		currentStableAnimation = verticalState.keys()[currentVerticalState] + "_" + horizontalState.keys()[currentHorizontalState]
+		play_stable_anim()
+		changePoseTimer = 0
 
 func update_death(delta: float) -> void:
 	$"../HeroAnimation".play("DEATH_" + horizontalState.keys()[currentHorizontalState])

@@ -16,7 +16,6 @@ func set_camera_position() -> void:
 	var bottom = camera.limit_bottom
 	var top = camera.limit_top
 	
-
 	var cameraSpeed = (body.position - camera.position)
 	
 	var viewSize = get_viewport_rect().size
@@ -29,7 +28,7 @@ func set_camera_position() -> void:
 	)
 
 	var distanceCameraToHero = camera.position.distance_to(body.position)
-	var smoothSpeed = 0.03
+	var smoothSpeed = 0.04
 	if distanceCameraToHero > 5:
 		camera.position = camera.position.lerp(targetPoint, smoothSpeed)
 
