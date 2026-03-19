@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://b7ekoma0fmfri" path="res://Resources/Textures/HUD/Sign/ChangeAnimations/Scissors_Paper/Frame0000.png" id="34_drnmu"]
 [ext_resource type="PackedScene" uid="uid://tccmexfshjmy" path="res://Scenes/Checkpoint.tscn" id="35_qmjd0"]
 [ext_resource type="Texture2D" uid="uid://do8wbf2hi85yo" path="res://Resources/Textures/Temp/Restart.png" id="36_03vhh"]
+[ext_resource type="PackedScene" uid="uid://byv3u4hv71i3i" path="res://Scenes/Camera_Change.tscn" id="37_ev64o"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5b1h"]
 particle_flag_disable_z = true
@@ -291,7 +292,7 @@ texture = ExtResource("25_bgidn")
 
 [node name="Cliff10" parent="Cliffs/SmallCliffs/Lift2" unique_id=504746787 instance=ExtResource("11_b3p46")]
 position = Vector2(6287, 155)
-upperOffset = 27.0
+upperOffset = 30.0
 sideOffset = 12.0
 lowerSide = 150.0
 mass = 15
@@ -559,3 +560,14 @@ size = Vector2(50, 300)
 [node name="Restart" type="Sprite2D" parent="Temp" unique_id=1645728767]
 position = Vector2(1208, 797)
 texture = ExtResource("36_03vhh")
+
+[node name="Node2D" parent="." unique_id=1932304002 instance=ExtResource("37_ev64o")]
+position = Vector2(5904, 349)
+topLimit1 = -2000
+bottomLimit1 = 1725
+leftLimit1 = -200
+rightLimit1 = 10000
+topLimit2 = -2000
+bottomLimit2 = 490
+leftLimit2 = -200
+rightLimit2 = 10000

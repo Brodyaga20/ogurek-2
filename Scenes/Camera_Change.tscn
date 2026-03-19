@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://byv3u4hv71i3i"]
+
+[ext_resource type="Script" uid="uid://dvgqletpxph4q" path="res://Scripts/CameraChange.gd" id="1_od22e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40p85"]
+size = Vector2(20, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od22e"]
+size = Vector2(20, 66)
+
+[node name="Node2D" type="Node2D" unique_id=1932304002]
+script = ExtResource("1_od22e")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=7675989]
+position = Vector2(-22, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=174786077]
+shape = SubResource("RectangleShape2D_40p85")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=40519292]
+position = Vector2(21, 0)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2" unique_id=899255466]
+shape = SubResource("RectangleShape2D_od22e")
+
+[connection signal="body_entered" from="Area2D" to="." method="body_enter_from_right"]
+[connection signal="body_entered" from="Area2D2" to="." method="body_enter_from_left"]
